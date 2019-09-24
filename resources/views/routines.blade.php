@@ -10,5 +10,6 @@
     @foreach ($routines as $routine)
         <p>{{$routine->id}}</p>
     @endforeach
+    <a href="">
 </body>
 </html>

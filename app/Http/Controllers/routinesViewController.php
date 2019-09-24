@@ -10,4 +10,8 @@ class routinesViewController extends Controller
         $routines = DB::select('select * from patients', [1]);
         return view('routines')->with("routines", $routines);
 }
+public function viewP(Request $request){
+    $routines = DB::select('select * from patients', [1]);
+    return view('routines')->with("routines", $routines);
+}
 }
