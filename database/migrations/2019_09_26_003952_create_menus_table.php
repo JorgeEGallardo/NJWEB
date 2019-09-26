@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoutinesTable extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateRoutinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('routines', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
+            $table->engine = 'InnoDB'; // Motor por si acaso no esta definido de default
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->integer('series');
-            $table->integer('repetitions');
-            $table->integer('intensity');
-            $table->string('rest');
-            $table->string('link');
 
+            $table->string('name');
+            $table->string('portion');
+            
             $table->BigInteger('patient_id')->unsigned();
             $table->BigInteger('day_id')->unsigned();
-            
+            $table->BigInteger('cat_id')->unsigned();
+            //Foreign constraits
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->foreign('day_id')->references('id')->on('days')->onDelete('cascade');
+            $table->foreign('cat_id')->references('id')->on('menu_cats')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -39,6 +39,6 @@ class CreateRoutinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routines');
+        Schema::dropIfExists('menus');
     }
 }

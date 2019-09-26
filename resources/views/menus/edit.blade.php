@@ -7,20 +7,20 @@
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-      <h2 class="title">Añadir menu</h2>
-      <form method="post" action="{{ url('/menus/patient') }}">
+      <h2 class="title">Editar menu selecionado</h2>
+      <form method="post" action="{{ url('/menus/patient/'.$menu->id.'/edit') }}">
        @csrf
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group label-floating">
               <label class="control-label">Comida</label>
-              <input type="texto" class="form-control" name="name" required>
+              <input type="texto" class="form-control" name="name" value="{{ $menu->name}}" required>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group label-floating">
               <label class="control-label">Porcion</label>
-              <input type="texto" class="form-control" name="portion" required>
+              <input type="texto" class="form-control" name="portion" value="{{ $menu->portion}}" required>
             </div>
           </div>
         </div>
@@ -59,7 +59,8 @@
             </select>
           </div>
         </div>
-        <button type="submit" class="btn btn-success">Crear menu</button>
+        <button type="submit" class="btn btn-success">Guardar cambios</button>
+        <a href="{{url ('/menus/patient')}}" class="btn btn-danger"> Cancelar </a>
       </form>
     </div>
   </div>
