@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Patients extends Migration
+class CreatePatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class Patients extends Migration
      */
     public function up()
     {
-    Schema::create('patients', function (Blueprint $table) {
-        $table->bigIncrements('id');
-        $table->string('username');
-        $table->string('password');
-    });
+        Schema::create('patients', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('username');
+            $table->string('password');
+            $table->timestamps();
+        });
     }
 
     /**

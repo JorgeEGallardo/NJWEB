@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="{{url('img/logo.png')}}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    WellnessPal
+    @yield('title','WellnessPal')
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -16,7 +16,7 @@
   <!-- CSS Files -->
   <link href="{{asset('css/material-kit.css?v=2.0.6') }}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
 </head>
 
 <body class="@yield('body-class')">
@@ -87,6 +87,36 @@
       @yield('content')
   </div>
 </body>
+<footer class="footer footer-default">
+  <div class="container">
+    <!--<nav class="float-left">
+      <ul>
+        <li>
+          <a href="/">
+            About Us
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            Licenses
+          </a>
+        </li>
+      </ul>
+      </nav> -->
+    <div class="copyright float-right">
+      &copy;
+      <script>
+        document.write(new Date().getFullYear())
+      </script>, made with <i class="material-icons">favorite</i> by
+      <a target="_blank">Web developers Adara's team</a> for a better work experience.
+    </div>
+  </div>
+</footer>
   <!--   Core JS Files   -->
   <script src="{{asset('/js/core/jquery.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('/js/core/popper.min.js')}}" type="text/javascript"></script>
