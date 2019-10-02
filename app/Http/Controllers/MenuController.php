@@ -73,12 +73,12 @@ class MenuController extends Controller
         $menu = menu::find($id);
         $menu -> name = $request->input('name');
         $menu -> portion = $request->input('portion');
-        $menu -> patient_id = $request->input('patient_id');
+        //$menu -> patient_id = $request->input('patient_id');
         $menu -> day_id = $request->input('day_id');
         $menu -> cat_id = $request->input('cat_id');
         $menu -> save();
 
-        return redirect('/menus/patient');
+        return redirect('/menus');
     }  
     public function destroy ($id)
     {

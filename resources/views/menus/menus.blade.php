@@ -3,20 +3,13 @@
 @section('title', 'Pacientes')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
-  
 </div>
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-      <h2 class="title">Paciente</h2>
+      <h2 class="title">Paciente </h2>
       <div class="team">
         <div class="row">
-          <div class="align-items-md-center">
-            <a href ="{{ url('/menus/patient') }}"class="btn btn-success btn-round">
-              <i class="material-icons">add_box</i> Añadir menu
-            </a>
-          </div>
-          
         <table class="table">
             <thead>
                 <tr>
@@ -56,5 +49,8 @@
       </div>
     </div>
   </div>
+    <a href ="{{ url('/menus') }}"class="btn btn-success btn-round">
+      <i class="material-icons">keyboard_return</i> Regresar
+    </a>
 </div>
 @endsection

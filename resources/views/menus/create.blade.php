@@ -60,6 +60,7 @@
           </div>
         </div>
         <button type="submit" class="btn btn-success">Crear menu</button>
+        <a href="{{url ('/menus')}}" class="btn btn-danger"> Cancelar </a>
       </form>
     </div>
   </div>
