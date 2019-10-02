@@ -40,7 +40,7 @@
           <div class="col-md-4">
             <div class="info">
             <div class="card-image">
-                <a href="/menus/patient">
+                <a href="/menus">
                   <img class="img img-raised" id="card1" src="{{asset ('/img/logo.png')}}"  />
                 </a>
               </div>

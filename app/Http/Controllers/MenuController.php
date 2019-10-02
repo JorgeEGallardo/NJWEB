@@ -16,14 +16,15 @@ class MenuController extends Controller
         return view('menus.index')->with(compact('patients')); //lista de pacientes
    
     }
-    public function menus ()
+    public function menus ($id)
     {
         /* $menú = \BD::SELECT("Select campos from menú inner join pacientes where menú.id_paciente= paciente.id) */
         $menus = \DB::SELECT("SELECT menus.id,menus.name, menus.portion, menus.patient_id, menus.day_id, menus.cat_id, patients.username, days.name AS days, menu_cats.name AS menu_cats 
         FROM menus 
         INNER JOIN patients on menus.patient_id = patients.id
 		INNER JOIN days on menus.day_id = days.id
-        INNER JOIN menu_cats on menus.cat_id= menu_cats.id");
+        INNER JOIN menu_cats on menus.cat_id= menu_cats.id
+        WHERE patient_id = $id");
         return view('menus.menus')->with(compact('menus')); //lista de comidas
     }
     public function create ()

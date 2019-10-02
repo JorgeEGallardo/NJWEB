@@ -27,9 +27,9 @@
                     <td class="text-center">{{$patient->id}}</td>
                     <td>{{$patient->username}}</td>
                     <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="Añadir menu" class="btn btn-success">
+                        <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Añadir menu" class="btn btn-success">
                             <i class="material-icons" >add_box</i>
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </tbody>
