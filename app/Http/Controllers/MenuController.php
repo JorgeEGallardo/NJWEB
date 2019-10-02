@@ -55,7 +55,7 @@ class MenuController extends Controller
         $menu -> cat_id = $request->input('cat_id');
         $menu -> save();
 
-        return redirect('/menus/patient');
+        return redirect('/menus');
     }   
     public function edit ($id)
     {   

@@ -12,7 +12,7 @@
       <div class="team">
         <div class="row">
           <div class="align-items-md-center">
-            <a href ="{{ url('/menus/patient/create') }}"class="btn btn-success btn-round">
+            <a href ="{{ url('/menus/patient') }}"class="btn btn-success btn-round">
               <i class="material-icons">add_box</i> Añadir menu
             </a>
           </div>
