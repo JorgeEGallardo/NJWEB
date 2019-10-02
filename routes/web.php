@@ -17,11 +17,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 Route::get('/menus', 'MenuController@index'); // listado de pacientes listos para añadir menus 
 
 Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de pacientes
+
+Route::get('/rutinas', 'routinesViewController@viewM');
+Route::post('/rutinas', 'routinesViewController@viewP');
+
+Route::get('/pdf', 'routinesViewController@generatePDF');
+
 Route::get('/menus/patient/create', 'MenuController@create'); //formulario
 Route::post('/menus/patient', 'MenuController@store'); //registrar recetas para el paciente
 Route::get('/menus/patient/{id}/edit', 'MenuController@edit'); //formulario edicion
 Route::post('/menus/patient/{id}/edit', 'MenuController@update'); //actualizar menus
 Route::delete('/menus/patient/{id}', 'MenuController@destroy'); //formulario para eliminar
+
