@@ -39,7 +39,7 @@
             </select>
           </div>
           <div class="form-group col-sm-4">
-            <label for="exampleFormControlSelect1">Dias</label>
+            <label for="exampleFormControlSelect1">Día</label>
             <select name ="day_id" class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
             <option value="1">Lunes</option>
             <option value="2">Martes</option>
@@ -60,6 +60,7 @@
           </div>
         </div>
         <button type="submit" class="btn btn-success">Crear menu</button>
+        <a href="{{url ('/menus')}}" class="btn btn-danger"> Cancelar </a>
       </form>
     </div>
   </div>
