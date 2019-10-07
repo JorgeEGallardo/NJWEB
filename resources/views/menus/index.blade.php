@@ -3,6 +3,15 @@
 @section('body-class','profile-page')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title">Adara wellness & spa</h1>
+        <h4>Sistema de administracion de WellnessPal</h4>
+      </div>
+    </div>
+  </div>
+
 </div>
 <div class="main main-raised">
   <div class="container">
@@ -12,6 +21,9 @@
               <i class="material-icons">add_box</i> Añadir menu
             </a>
       <div class="team">
+        <a href ="{{ url('/menus/patient') }}"class="btn btn-success btn-round">
+                  <i class="material-icons">add_box</i> Añadir menu
+        </a>
         <div class="row">
           <table class="table">
               <thead>
@@ -27,6 +39,7 @@
                       <td class="text-center">{{$patient->id}}</td>
                       <td>{{$patient->username}}</td>
                       <td class="td-actions text-right">
+
                           <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">
                               <i class="material-icons" >info</i>
                           </a>
@@ -35,6 +48,10 @@
               </tbody>
               @endforeach
           </table>
+            <a href ="{{ url('/') }}"class="btn btn-success btn-round">
+                  <i class="material-icons">keyboard_return</i> Regresar
+            </a>
+
         </div>
       </div>
     </div>
