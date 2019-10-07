@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\MenuController;
+
 Route::get('/', 'WelcomeController@welcome');
 
 Auth::routes();
@@ -19,8 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::get('/menus', 'MenuController@index'); // listado de pacientes listos para añadir menus 
-
+Route::get('/menus', 'MenuController@index'); // listado de pacientes listos para añadir menus
+Route::get('/menus/patientMassive', 'MenuController@massiveView');
+Route::post('/menus/patientMassive', 'MenuController@massive');
 Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de pacientes
 Route::get('/menus/patient', 'MenuController@create'); //formulario
 Route::post('/menus/patient', 'MenuController@store'); //registrar recetas para el paciente
