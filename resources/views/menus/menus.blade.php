@@ -3,7 +3,14 @@
 @section('title', 'Pacientes')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
-  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title">Adara wellness & spa</h1>
+        <h4>Sistema de administracion de WellnessPal</h4>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="main main-raised">
   <div class="container">
