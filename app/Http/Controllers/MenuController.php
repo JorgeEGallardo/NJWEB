@@ -12,7 +12,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $patients = patient::all()->orderBy('id');
+        $patients = patient::orderBy('id', 'DESC')->get();
         return view('menus.index')->with(compact('patients')); //lista de pacientes
 
     }
