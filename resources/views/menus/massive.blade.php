@@ -26,10 +26,14 @@
           <option value="{{$patient->id}}">{{$patient->username}}</option>
           @endforeach
         </select>
-      </div>1
+      </div>Menus
       <div>
       <textarea name="raw"></textarea>
         </div>
+        Recetas
+      <div>
+        <textarea name="rec"></textarea>
+          </div>
         <button type="submit" class="btn btn-success">Crear menu</button>
         <a href="{{url ('/menus')}}" class="btn btn-danger"> Cancelar </a>
       </form>

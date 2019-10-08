@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\patient;
 use App\menu;
-use App\menuCat;
-use App\days;
-
+use App\recipes;
+class recipe
+{
+    public $name;
+    public $ingr;
+    public $proc;
+}
 class MenuController extends Controller
 {
     public function index()
@@ -51,9 +55,9 @@ class MenuController extends Controller
 
         return view('menus.create'); //formulario de comidas
     }
-    public function massive(Request $request)
+    public function menusProc(String $string)
     {
-        $raw = $request->input('raw');
+        $raw = $string;
 
         $menu = array(); //Aqui se va a guardar $raw separado por palabras.
         $day = array(); //Aqui van todas las comidas guardadas por dia.
@@ -104,12 +108,62 @@ class MenuController extends Controller
             array_shift($mealsArray);
             array_push($masterArray, $mealsArray);
         }
+        return $masterArray;
         //Imprimimos todo el arreglo
         /*for ($i = 0; $i < count($masterArray); $i++) {
             echo "Dia " . ($i + 1) . ":<br>";
             for ($j = 0; $j < 5; $j++)
                 echo $mealList[$j] . " " . $masterArray[$i][$j] . "<br>";
         }*/
+    }
+
+    public function recipesProc(string $string)
+    {
+        $raw = $string;
+        $menu = preg_split('/\n+/', $raw); //Separamos el $raw en palabras.
+        $proc = false;
+        $isFirst = true;
+        $recipes = array();
+        $name = "";
+        $ingr = "";
+        $isProc = false;
+        for ($i = 0; $i < (count($menu) - 1); $i++) {
+            if (strpos($menu[$i + 1], "Ingredient") !== false) {
+                if ($isFirst) {
+                    $isFirst = false;
+                } else {
+                    $recipe = new recipe();
+                    $recipe->name = $name;
+                    $recipe->ingr = $ingr;
+                    $recipe->proc = $proc;
+                    $name = "";
+                    $proc = "";
+                    $ingr = "";
+                    array_push($recipes, $recipe);
+                }
+                $name = $menu[$i];
+                $isProc = false;
+            } else if (strpos(strtolower($menu[$i]), "prepar") !== false || strpos(strtolower($menu[$i]), "elaboraci") !== false) {
+                $isProc = true;
+            } else {
+                if ($isProc)
+                    $proc = $proc . $menu[$i] . " ";
+                else
+                    $ingr = $ingr . $menu[$i] . " ";
+            }
+        }
+        $recipe = new recipe();
+        $recipe->name = $name;
+        $recipe->ingr = $ingr;
+        $recipe->proc = $proc;
+
+        array_push($recipes, $recipe);
+        return $recipes;
+    }
+    public function massive(Request $request)
+    {
+        \DB::delete('delete from menus where patient_id = ?', [$request->input('patient_id')]);
+        $masterArray =  Self::menusProc($request->input('raw'));
         for ($i = 0; $i < count($masterArray); $i++) {
             for ($j = 0; $j < 5; $j++) {
                 $menuS = new menu();
@@ -122,6 +176,16 @@ class MenuController extends Controller
             }
         }
 
+        //Recetas
+        $recipes = Self::recipesProc($request->input('rec'));
+        for ($i = 0; $i < count($recipes); $i++) {
+            $recipesP = new recipes();
+            $recipesP->name = $recipes[$i]->name . "";
+            $recipesP->ingredients = $recipes[$i]->ingr;
+            $recipesP->patient_id = $request->input('patient_id');
+            $recipesP->procedure = $recipes[$i]->proc;
+            $recipesP->save();
+        }
         return redirect('/menus');
     }
     public function store(Request $request)
