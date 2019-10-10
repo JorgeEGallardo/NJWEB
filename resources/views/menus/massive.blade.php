@@ -50,7 +50,7 @@ function awa(){
   url: '{{url('/menus/temp')}}',
   data: $( "form" ).serialize(),
   success: function(Response) {
-       document.getElementById("auch").innerHTML = "AWA";
+       document.getElementById("auch").innerHTML = Response;
     }});
 }
 </script>
