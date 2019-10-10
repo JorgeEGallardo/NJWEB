@@ -116,7 +116,9 @@ class MenuController extends Controller
                 echo $mealList[$j] . " " . $masterArray[$i][$j] . "<br>";
         }*/
     }
-
+    public function pre(Request $request){
+        return view('Scripts.menuPre')->with(compact('request')); //lista de pacientes
+    }
     public function recipesProc(string $string)
     {
         $raw = $string;

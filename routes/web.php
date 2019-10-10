@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::post('/menus/temp', 'MenuController@pre');
 
 Route::get('/menus', 'MenuController@index'); // listado de pacientes listos para añadir menus
 Route::get('/menus/patientMassive', 'MenuController@massiveView');

@@ -28,7 +28,7 @@
         </select>
       </div>Menus
       <div>
-      <textarea name="raw"></textarea>
+      <textarea id="xd" onInput="awa();"; name="raw"></textarea>
         </div>
         Recetas
       <div>
@@ -38,6 +38,20 @@
         <a href="{{url ('/menus')}}" class="btn btn-danger"> Cancelar </a>
       </form>
     </div>
+    <div id="auch">
+
+    </div>
   </div>
 </div>
+<script>
+function awa(){
+    $.ajax({
+  type: "POST",
+  url: '{{url('/menus/temp')}}',
+  data: $( "form" ).serialize(),
+  success: function(Response) {
+       document.getElementById("auch").innerHTML = Response;
+    }});
+}
+</script>
 @endsection
