@@ -17,18 +17,26 @@
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-      <h2 class="title">Paciente </h2>
+      <h2 class="title">Paciente</h2>
+      <form method="post" action="{{ url('/menus/patient/'.$menu->id) }}">
+        @csrf
+        {{ method_field('DELETE')}}
+        
+        <button type="submit" rel="tooltip" title="eliminar menu" class="btn btn-danger">
+            <i class="material-icons">close</i>
+        </button>
+      </form>
       <div class="team">
         <div class="row">
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre de la comida</th>
-                    <th>Porcion</th>
-                    <th>Paciente</th>
+                    <th>Comida</th>
+                    <!-- <th>Porcion</th>
+                    <th>Paciente</th> -->
                     <th>Día</th>
-                    <th>cat</th>
+                    <th>Tipo</th>
                     <th class="text-right">Actions</th>
                 </tr>
             </thead>
@@ -36,21 +44,14 @@
             <tbody>
                 <tr>
                     <td>{{$menu->name}}</td>
-                    <td>{{$menu->portion}}</td>
-                    <td>{{$menu->username}}</td>
+                    <!-- <td>{{$menu->portion}}</td>
+                    <td>{{$menu->username}}</td> -->
                     <td>{{$menu->days}}</td>
                     <td>{{$menu->menu_cats}}</td>
                     <td class="td-actions text-right">
-                      <form method="post" action="{{ url('/menus/patient/'.$menu->id) }}">
-                        @csrf
-                        {{ method_field('DELETE')}}
-                        <a href="{{ url('/menus/patient/'.$menu->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
-                            <i class="material-icons">edit</i>
-                        </a>
-                        <button type="submit" rel="tooltip" title="eliminar menu" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                        </button>
-                      </form>
+                    <a href="{{ url('/menus/patient/'.$menu->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
+                        <i class="material-icons">edit</i>
+                    </a>
                     </td>
                 </tr>
             </tbody>
