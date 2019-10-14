@@ -1,6 +1,89 @@
-<?php
+<div class="accordion" id="accordionExample">
+    <?php
+$raw = $_POST['rec'];
+if ($raw != ""){?>
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Recetas vista previa
+          </button>
+        </h2>
+      </div>
 
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <?php
+class recipe
+{
+   public $name;
+   public $ingr;
+   public $proc;
+}
+$raw = $_POST['rec'];
+$menu = preg_split('/\n+/', $raw); //Separamos el $raw en palabras.
+$proc = false;
+$isFirst = true;
+$recipes = array();
+$name = "";
+$ingr = "";
+$isProc = false;
+for ($i = 0; $i < (count($menu) - 1); $i++) {
+   if (strpos($menu[$i + 1], "Ingredient") !== false) {
+      if ($isFirst) {
+         $isFirst = false;
+      } else {
+         $recipe = new recipe();
+         $recipe->name = $name;
+         $recipe->ingr = $ingr;
+         $recipe->proc = $proc;
+         $name = "";
+         $proc = "";
+         $ingr = "";
+         array_push($recipes, $recipe);
+      }
+      $name = $menu[$i];
+      $isProc = false;
+   } else if (strpos(strtolower($menu[$i]), "prepar") !== false || strpos(strtolower($menu[$i]), "elaboraci") !== false) {
+      $isProc = true;
+   } else {
+      if ($isProc)
+         $proc = $proc . $menu[$i] . " ";
+      else
+         $ingr = $ingr . $menu[$i] . " ";
+   }
+}
+$recipe = new recipe();
+$recipe->name = $name;
+$recipe->ingr = $ingr;
+$recipe->proc = $proc;
+
+array_push($recipes, $recipe);
+echo "<table class='table'>";
+foreach ($recipes as $recipe) {
+   echo "<tr><td>" . $recipe->proc . "</td></tr>";
+}
+echo "</table>";
+?>
+        </div>
+      </div>
+    </div>
+    <?php
+$raw = "";
 $raw = $_POST['raw'];
+}if ($raw != ""){
+?>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Menus vista previa
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+<?php
 
 $menu = array(); //Aqui se va a guardar $raw separado por palabras.
 $day = array(); //Aqui van todas las comidas guardadas por dia.
@@ -58,3 +141,9 @@ for ($i = 0; $i < count($masterArray); $i++) {
         echo "<tr><td>".$mealList[$j] . "</td><td> " . $masterArray[$i][$j] . "</td></tr>";
     echo "</table>";
 }
+}
+?>
+</div>
+</div>
+</div>
+</div></div>
