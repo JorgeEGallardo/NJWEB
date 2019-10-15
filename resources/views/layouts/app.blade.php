@@ -42,7 +42,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                         </li>
-                    @endif 
+                    @endif
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -62,7 +62,7 @@
                         </div>
                     </li>
                 @endguest
-          
+
       <!--     <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
               <i class="fa fa-twitter"></i>

@@ -7,6 +7,10 @@ use DB;
 use PDF;
 class routinesViewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function viewM(){
         $routines = DB::select('select * from patients', [1]);
         return view('routines')->with("routines", $routines);
