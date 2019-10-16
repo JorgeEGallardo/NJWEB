@@ -18,16 +18,18 @@
   <div class="container">
     <div class="section text-center">
       <h2 class="title">Paciente</h2>
-      <form method="post" action="{{ url('/menus/patient/'.$menus->patient_id.'/delete') }}">
+      @if(isset($menus[0]))
+      <form method="post" action="{{ url('/menus/patient/'.$menus[0]->patient_id.'/delete') }}">
                         @csrf
                         {{ method_field('DELETE')}}
-                        
+
                         <button type="submit" rel="tooltip" title="eliminar menu" class="btn btn-danger">
                             <i class="material-icons">close</i>
                         </button>
                       </form>
+                      @endif
       <div class="team">
-        <div class="row">     
+        <div class="row">
         <table class="table">
             <thead>
                 <tr>
@@ -51,7 +53,7 @@
                       <form method="post" action="{{ url('/menus/patient/'.$menu->patient_id.'/delete') }}">
                         @csrf
                         {{ method_field('DELETE')}}
-                        
+
                         <button type="submit" rel="tooltip" title="eliminar menu" class="btn btn-danger">
                             <i class="material-icons">close</i>
                         </button>
@@ -59,7 +61,7 @@
                         <a href="{{ url('/menus/patient/'.$menu->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
                             <i class="material-icons">edit</i>
                         </a>
-                      
+
                     </td>
                 </tr>
             </tbody>

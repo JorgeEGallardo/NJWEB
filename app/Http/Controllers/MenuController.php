@@ -123,10 +123,9 @@ class MenuController extends Controller
     }
     public function destroy($id)
     {
-        $menu = menu::find($id);
-        $menu->delete();
+        \DB::delete('delete from menus where patient_id = ?', [$id]);
 
-        return back();
+        return redirect('/menus');
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -242,11 +241,13 @@ class MenuController extends Controller
         $patient = patient::find($request->input('patient_id'));
         $patient->description = $request->desc;
         $patient->save();
+        if($request->desc !=""){
         $cata = new catalogos();
-        $cata->description = $request->desc;; //TODO
+        $cata->description = $request->desc; //TODO
         $cata->menu = $request->input('raw');
         $cata->recipes = $request->input('rec');
         $cata->save();
+        }
         \DB::delete('delete from menus where patient_id = ?', [$request->input('patient_id')]);
         $masterArray =  Self::menusProc($request->input('raw'));
         for ($i = 0; $i < count($masterArray); $i++) {
