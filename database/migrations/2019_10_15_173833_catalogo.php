@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePatientsTable extends Migration
+class Catalogo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreatePatientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('catalogos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->text('description',5000)->nullable();
+            $table->text('description',5000);
+            $table->text('menu',50000);
+            $table->text('recipes',50000);
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -29,6 +31,7 @@ class CreatePatientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patients');
+
+        Schema::dropIfExists('catalogos');
     }
 }
