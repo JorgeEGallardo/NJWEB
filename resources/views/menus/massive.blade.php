@@ -18,8 +18,6 @@
       <h2 class="title">Añadir menu</h2>
       <form method="post" action="{{ url('/menus/patientMassive') }}">
        @csrf
-<<<<<<< HEAD
-
        <div class="form-group col-sm-4">
         <label for="exampleFormControlSelect1">Pacientes</label>
         <select name ="patient_id" class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
@@ -34,15 +32,6 @@
         Recetas
       <div>
         <textarea name="rec"></textarea>
-=======
-        <div class="form-group col-sm-12">
-          <label >Menus</label>
-          <textarea id="xd" onInput="awa();"; name="raw" class="form-control" rows="3" required></textarea>
-          </div>
-        <div class="form-group col-sm-12">
-          <label >Recetas</label>
-          <textarea name="rec" class="form-control" rows="3" required></textarea>
->>>>>>> 1b25e9fdac9b88a3c50560e6d07e3db5b5b2fd79
           </div>
         <div class="form-group col-sm-4">
           <label for="exampleFormControlSelect1">Pacientes</label>

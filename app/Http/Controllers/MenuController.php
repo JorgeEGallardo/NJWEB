@@ -17,20 +17,16 @@ class recipe
 
 class MenuController extends Controller
 {
-<<<<<<< HEAD
-
     //------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------RETURN VIEWS-----------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------
-=======
     public function __construct()
     {
         $this->middleware('auth');
     }
->>>>>>> 1b25e9fdac9b88a3c50560e6d07e3db5b5b2fd79
-    public function index()
+   public function index()
     {
-        $patients = patient::orderBy('id', 'ASC')->paginate(10); 
+        $patients = patient::orderBy('id', 'ASC')->paginate(10);
         return view('menus.index')->with(compact('patients')); //lista de pacientes
 
     }
@@ -38,7 +34,7 @@ class MenuController extends Controller
     public function menus($id)
     {
         /* $menú = \DB::SELECT("Select campos from menú inner join pacientes where menú.id_paciente= paciente.id) */
-        $menus = \DB::SELECT("SELECT menus.id,menus.name, menus.portion, menus.patient_id, menus.day_id, 
+        $menus = \DB::SELECT("SELECT menus.id,menus.name, menus.portion, menus.patient_id, menus.day_id,
         menus.cat_id, patients.username, days.name AS days, menu_cats.name AS menu_cats
         FROM menus
         INNER JOIN patients on menus.patient_id = patients.id
@@ -48,7 +44,7 @@ class MenuController extends Controller
 
         return view('menus.menus')->with(compact('menus')); //lista de comidas
 
-       
+
     }
     public function massiveView()
     {
@@ -193,14 +189,8 @@ class MenuController extends Controller
         }
         return $masterArray;
     }
-<<<<<<< HEAD
 
     //Devuelve un arreglo con todas las recetas de comidas.
-=======
-    public function pre(Request $request){
-        return view('Scripts.menuPre')->with(compact('request')); //lista de pacientes
-    }
->>>>>>> 1b25e9fdac9b88a3c50560e6d07e3db5b5b2fd79
     public function recipesProc(string $string)
     {
         $raw = $string;
@@ -282,51 +272,4 @@ class MenuController extends Controller
         }
         return redirect('/menus');
     }
-<<<<<<< HEAD
-=======
-    public function store(Request $request)
-    {
-        //guardar datos
-        //dd($request->all());
-        $menu = new menu();
-        $menu->name = $request->input('name');
-        $menu->portion = $request->input('portion');
-        $menu->patient_id = $request->input('patient_id');
-        $menu->day_id = $request->input('day_id');
-        $menu->cat_id = $request->input('cat_id');
-        $menu->save();
-
-        return redirect('/menus');
-    }
-    public function edit($id)
-    {
-        //return "mostrar aqui el menu con id $id";
-        $menu = menu::find($id);
-        $patients = patient::all();
-        return view('menus.edit')->with(compact('patients', 'menu')); //lista de cats
-
-        //return view('menus.edit'); //formulario de comidas
-    }
-    public function update(Request $request, $id)
-    {
-        //guardar datos
-        //dd($request->all());
-        $menu = menu::find($id);
-        $menu->name = $request->input('name');
-        //$menu->portion = $request->input('portion');
-        //$menu -> patient_id = $request->input('patient_id');
-        $menu->day_id = $request->input('day_id');
-        $menu->cat_id = $request->input('cat_id');
-        $menu->save();
-
-        return redirect('/menus');
-    }
-    public function destroy($id)
-    {
-        $menus = \DB::table('menus')->where('patient_id','=', $id)->delete();
-        $recipes = \DB::table('recipes')->where('patient_id','=', $id)->delete();
-        //return $id;
-        return back();
-    }
->>>>>>> 1b25e9fdac9b88a3c50560e6d07e3db5b5b2fd79
 }

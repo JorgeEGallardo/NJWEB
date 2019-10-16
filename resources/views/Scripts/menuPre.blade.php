@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="accordion" id="accordionExample">
     <?php
 $raw = $_POST['rec'];
@@ -85,11 +84,6 @@ $raw = $_POST['raw'];
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
 <?php
-=======
-<?php
-
-$raw = $_POST['raw'];
->>>>>>> 1b25e9fdac9b88a3c50560e6d07e3db5b5b2fd79
 
 $menu = array(); //Aqui se va a guardar $raw separado por palabras.
 $day = array(); //Aqui van todas las comidas guardadas por dia.
@@ -147,12 +141,9 @@ for ($i = 0; $i < count($masterArray); $i++) {
         echo "<tr><td>".$mealList[$j] . "</td><td> " . $masterArray[$i][$j] . "</td></tr>";
     echo "</table>";
 }
-<<<<<<< HEAD
 }
 ?>
 </div>
 </div>
 </div>
 </div></div>
-=======
->>>>>>> 1b25e9fdac9b88a3c50560e6d07e3db5b5b2fd79
