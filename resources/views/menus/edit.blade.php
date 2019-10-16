@@ -19,18 +19,18 @@
       <form method="post" action="{{ url('/menus/patient/'.$menu->id.'/edit') }}">
        @csrf
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-12">
             <div class="form-group label-floating">
               <label class="control-label">Comida</label>
               <input type="texto" class="form-control" name="name" value="{{ $menu->name}}" required>
             </div>
           </div>
-          <div class="col-sm-6">
+<!--           <div class="col-sm-6">
             <div class="form-group label-floating">
               <label class="control-label">Porcion</label>
               <input type="texto" class="form-control" name="portion" value="{{ $menu->portion}}" required>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="row">
           <div class="form-group col-sm-6">
