@@ -1,5 +1,6 @@
 <?php
 
+use App\patient;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,7 +20,13 @@ class CreatePatientsTable extends Migration
             $table->string('password');
             $table->text('description',5000)->nullable();
             $table->timestamps();
+
         });
+
+        for ($i=0; $i < 250; $i++) {
+
+            patient::create(['username' => 'Usuario'.$i, 'password'=>'awaawaawa']);
+        }
     }
 
     /**

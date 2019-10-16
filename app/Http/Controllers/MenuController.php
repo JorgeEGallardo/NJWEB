@@ -46,11 +46,11 @@ class MenuController extends Controller
 
 
     }
-    public function massiveView()
+    public function massiveView($id)
     {
 
-        $patients = patient::all();
-        return view('menus.massive')->with(compact('patients')); //lista de pacientes
+        $patients = patient::find($id);
+        return view('menus.massive', ['id'=>$id, 'name'=>$patients->username]); //lista de pacientes
     }
 
     public function getCatalog(Request $request)
@@ -238,11 +238,12 @@ class MenuController extends Controller
     //Hace la carga de los datos a la base de datos.
     public function massive(Request $request)
     {
+
         $patient = patient::find($request->input('patient_id'));
-        $patient->description = "xd";
+        $patient->description = $request->desc;
         $patient->save();
         $cata = new catalogos();
-        $cata->description = "xd"; //TODO
+        $cata->description = $request->desc;; //TODO
         $cata->menu = $request->input('raw');
         $cata->recipes = $request->input('rec');
         $cata->save();

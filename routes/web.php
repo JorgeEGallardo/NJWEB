@@ -22,7 +22,7 @@ Route::post('/menus/temp', 'MenuController@pre');
 
 Route::get('/menus', 'MenuController@index'); // listado de pacientes listos para añadir menus
 
-Route::get('/menus/patientMassive', 'MenuController@massiveView');
+Route::get('/menus/patientMassive/{id}', 'MenuController@massiveView');
 Route::post('/menus/patientMassive', 'MenuController@massive');
 Route::post('/menus/getCatalog', 'MenuController@getCatalog');
 Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de pacientes
