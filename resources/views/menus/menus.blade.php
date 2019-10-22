@@ -50,14 +50,7 @@
                     <td>{{$menu->days}}</td>
                     <td>{{$menu->menu_cats}}</td>
                     <td class="td-actions text-right">
-                      <form method="post" action="{{ url('/menus/patient/'.$menu->patient_id.'/delete') }}">
-                        @csrf
-                        {{ method_field('DELETE')}}
 
-                        <button type="submit" rel="tooltip" title="eliminar menu" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                        </button>
-                      </form>
                         <a href="{{ url('/menus/patient/'.$menu->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
                             <i class="material-icons">edit</i>
                         </a>
