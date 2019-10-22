@@ -55,8 +55,10 @@ class MenuController extends Controller
 
     public function getCatalog(Request $request)
     {
-        $patients = \DB::select('select * from catalogs where Description Like %?', [$request->search]);
-        return $patients;
+        $catalog = \DB::select("select * from catalogos where Description like '$request->search%'");
+        $catalog =catalogos::where('Description', 'like', '%'.$request->search.'%')->paginate(2);
+        $patients = patient::find($request->patient);
+        return view('menus.table_sub', ['id'=>$request->patient, 'name'=>$patients->username])->with(compact('catalog'));
     }
 
 
@@ -72,10 +74,11 @@ class MenuController extends Controller
         return view('Scripts.menuPre')->with(compact('request')); //lista de pacientes
     }
     //Devuelve una vista para asignarle a un paciente un menú ya existente en la base de datos
-    public function existent()
+    public function existent($id)
     {
-        $catalog = catalogos::all();
-        return view('menus.exist')->with(compact('catalog'));
+        $patients = patient::find($id);
+        $catalog = catalogos::orderBy('id', 'ASC')->paginate(2);
+        return view('menus.exist', ['id'=>$id, 'name'=>$patients->username])->with(compact('catalog'));
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -273,5 +276,37 @@ class MenuController extends Controller
             $recipesP->save();
         }
         return redirect('/menus');
+    }
+    public function massiveEx($idMenu, $idPatient){
+        $cata = catalogos::find($idMenu);
+       $patient = patient::find($idPatient);
+        $patient->description = $cata->desc;
+        $patient->save();
+        \DB::delete('delete from menus where patient_id = ?', [$idPatient]);
+        $masterArray =  Self::menusProc($cata->menu);
+        for ($i = 0; $i < count($masterArray); $i++) {
+            for ($j = 0; $j < 5; $j++) {
+                $menuS = new menu();
+                $menuS->name = $masterArray[$i][$j] . "";
+                $menuS->portion = "2";
+                $menuS->patient_id = $idPatient;
+                $menuS->day_id = $i + 1;
+                $menuS->cat_id = $j + 1;
+                $menuS->save();
+            }
+        }
+
+        //Recetas
+        $recipes = Self::recipesProc($cata->recipes);
+        for ($i = 0; $i < count($recipes); $i++) {
+            $recipesP = new recipes();
+            $recipesP->name = $recipes[$i]->name . "";
+            $recipesP->ingredients = $recipes[$i]->ingr;
+            $recipesP->patient_id = $idPatient;
+            $recipesP->procedure = $recipes[$i]->proc;
+            $recipesP->save();
+        }
+        return redirect('/menus');
+
     }
 }
