@@ -23,8 +23,10 @@
                         @csrf
                         {{ method_field('DELETE')}}
 
+
                         <button type="submit" rel="tooltip" title="eliminar dieta" class="btn btn-danger">
                             <i class="material-icons">close</i>Eliminar registros
+
                         </button>
                       </form>
                       @endif

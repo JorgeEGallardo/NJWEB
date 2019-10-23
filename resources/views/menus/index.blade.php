@@ -34,11 +34,11 @@
                                 <!-- <td class="text-center">{{$patient->id}}</td> -->
                                 <td>{{$patient->username}}</td>
                                 <td class="td-actions text-right">
-                                        <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-success btn-round">
-                                            <i class="material-icons">add_box</i> Nuevo
+                                        <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-primary">
+                                            <i class="material-icons">add_box</i>
                                         </a>
-                                        <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-success btn-round">
-                                            <i class="material-icons">add_box</i> Existente
+                                        <a href="{{ url("/menus/Asignar/$patient->id") }}" class="btn btn-primary">
+                                            <i class="material-icons">archive</i>
                                         </a>
                                     <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">
                                         <i class="material-icons">info</i>
@@ -48,11 +48,10 @@
                         </tbody>
                         @endforeach
                     </table>
-                    
+                    {{ $patients->links() }}
                     <a href="{{ url('/') }}" class="btn btn-success btn-round">
                         <i class="material-icons">keyboard_return</i> Regresar
                     </a>
-                    {{ $patients->links() }}
                 </div>
             </div>
         </div>

@@ -33,7 +33,10 @@ useless */
 Route::get('/menus/patient/{id}/edit', 'MenuController@edit'); //formulario edicion
 Route::post('/menus/patient/{id}/edit', 'MenuController@update'); //actualizar menus
 Route::delete('/menus/patient/{id}', 'MenuController@destroy'); //formulario para eliminar
-Route::get('/menus/Asignar', 'MenuController@existent'); //formulario asignar existente
+
+Route::get('/menus/As/{id}', 'MenuController@existent'); //formulario asignar existente
+Route::get('/menus/Asignar/{id}', 'MenuController@existent'); //formulario asignar existente
+Route::get('/menus/massiveAsign/{idmenu}85{idPatient}', 'MenuController@massiveEx'); //formulario asignar existente
 Route::delete('/menus/patient/{id}/delete', 'MenuController@destroy'); //formulario para eliminar
 
 /* Rutas para pacientes  */
