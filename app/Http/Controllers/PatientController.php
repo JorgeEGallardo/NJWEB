@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\patient;
 class PatientController extends Controller
 {
-    
+
     //------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------RETURN VIEWS-----------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -16,12 +16,12 @@ class PatientController extends Controller
     }
     public function index()
     {
-        $patients = patient::orderBy('id', 'ASC')->paginate(10);
+        $patients = patient::orderBy('id', 'DESC')->paginate(10);
         return view('patients.index')->with(compact('patients')); //lista de pacientes
 
     }
     public function view($id)
-    {   
+    {
         $data = \DB::SELECT("SELECT * FROM patients WHERE id = ?", [$id]);
         return view('patients.patient')->with(compact('data')); //lista de comidas
     }
@@ -29,6 +29,11 @@ class PatientController extends Controller
     {
         $patient = patient::all();
         return view('patients.create')->with(compact('patient')); //lista de cats
+    }
+
+    public function atachIndex($id)
+    {
+        return view('patients.atach', ['id'=> $id]);
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
@@ -41,7 +46,7 @@ class PatientController extends Controller
         $patient = new patient();
         $patient->username = $request->input('username');
         $patient->password = $request->input('password');
-        $patient->description = $request->input('description');
+        $patient->fullname = $request->input('name');
         $patient->save();
 
         return redirect('/patient');
@@ -59,7 +64,7 @@ class PatientController extends Controller
         $patient = patient::find($id);
         $patient->username = $request->input('username');
         $patient->password = $request->input('password');
-        $patient->description = $request->input('description');
+        $patient->fullname = $request->input('name');
         $patient->save();
 
         return redirect('/patient');

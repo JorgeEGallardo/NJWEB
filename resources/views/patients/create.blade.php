@@ -33,12 +33,12 @@
           </div>
           <div class="col-sm-6">
             <div class="form-group label-floating">
-              <label class="control-label">Descripcion</label>
-              <input type="texto" class="form-control" name="description" required>
+              <label class="control-label">Nombre completo</label>
+              <input type="texto" class="form-control" name="name">
             </div>
           </div>
         </div>
-        
+
         <button type="submit" class="btn btn-success">Crear</button>
         <a href="{{url ('/patient')}}" class="btn btn-danger"> Cancelar </a>
       </form>

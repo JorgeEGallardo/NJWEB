@@ -26,10 +26,7 @@ Route::get('/menus/patientMassive/{id}', 'MenuController@massiveView');
 Route::post('/menus/patientMassive', 'MenuController@massive');
 Route::post('/menus/getCatalog', 'MenuController@getCatalog');
 Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de pacientes
-/* useless
-    Route::get('/menus/patient', 'MenuController@create'); //formulario
-    Route::post('/menus/patient', 'MenuController@store'); //registrar recetas para el paciente
-useless */
+
 Route::get('/menus/patient/{id}/edit', 'MenuController@edit'); //formulario edicion
 Route::post('/menus/patient/{id}/edit', 'MenuController@update'); //actualizar menus
 Route::delete('/menus/patient/{id}', 'MenuController@destroy'); //formulario para eliminar
@@ -48,4 +45,6 @@ Route::get('/patient/{id}/edit', 'PatientController@edit'); //formulario edicion
 Route::post('/patient/{id}/edit', 'PatientController@update'); //actualizar usuario
 Route::delete('/patient/{id}/delete', 'PatientController@destroy'); //formulario para eliminar
 
-/*Rutas para */
+        //Subir archivos
+Route::get('/patient/{id}/agregar', 'PatientController@atachIndex'); //Imagenes por usuario y archivos
+Route::post('/upload', 'imageController@postUpload')->name('uploadfile');
