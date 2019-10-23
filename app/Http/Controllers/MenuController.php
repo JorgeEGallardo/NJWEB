@@ -55,6 +55,7 @@ class MenuController extends Controller
 
     public function getCatalog(Request $request)
     {
+
         $catalog = \DB::select("select * from catalogos where Description like '$request->search%'");
         $catalog =catalogos::where('Description', 'like', '%'.$request->search.'%')->paginate(2);
         $patients = patient::find($request->patient);
@@ -74,11 +75,13 @@ class MenuController extends Controller
         return view('Scripts.menuPre')->with(compact('request')); //lista de pacientes
     }
     //Devuelve una vista para asignarle a un paciente un menú ya existente en la base de datos
+
     public function existent($id)
     {
         $patients = patient::find($id);
         $catalog = catalogos::orderBy('id', 'ASC')->paginate(2);
         return view('menus.exist', ['id'=>$id, 'name'=>$patients->username])->with(compact('catalog'));
+
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -107,6 +110,7 @@ class MenuController extends Controller
         $menu = menu::find($id);
         $patients = patient::all();
         return view('menus.edit')->with(compact('patients', 'menu')); //lista de cats
+
 
         //return view('menus.edit'); //formulario de comidas
     }

@@ -35,6 +35,7 @@
             <tbody>
                 <tr>
                     <td>{{$menu->description}}</td>
+
                     <td style="width:30%; height:25%"><textarea style="margin:0px; padding:0px; height:7em!important;width:100%">{{$menu->menu}}</textarea>
                     </td>
                     <td style="width:30%; height:25%"><textarea style="margin:0px; padding:0px; height:7em!important;width:100%">{{$menu->recipes}}</textarea>
@@ -55,6 +56,7 @@
             </tbody>
             @endforeach
         </table>
+
 
         {{ $catalog->links() }}
 

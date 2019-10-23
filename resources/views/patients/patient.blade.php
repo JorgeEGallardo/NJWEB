@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('body-class','profile-page sidebar-collapse')
-@section('title', 'Pacientes')
+@section('title', 'Paciente')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
 
@@ -12,49 +12,40 @@
       </div>
     </div>
   </div>
-
 </div>
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
       <h2 class="title">Paciente</h2>
-      @if(isset($menus[0]))
-      <form method="post" action="{{ url('/menus/patient/'.$menus[0]->patient_id.'/delete') }}">
-                        @csrf
-                        {{ method_field('DELETE')}}
-
-
-                        <button type="submit" rel="tooltip" title="eliminar dieta" class="btn btn-danger">
-                            <i class="material-icons">close</i>Eliminar registros
-
-                        </button>
-                      </form>
-                      @endif
       <div class="team">
         <div class="row">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Comida</th>
-                    <!-- <th>Porcion</th>
-                    <th>Paciente</th> -->
-                    <th>Día</th>
-                    <th>Tipo</th>
+                    <th>Paciente</th>
+                    <th>Contraseña</th>
+                    <th>Descripcion</th>
                     <th class="text-right">Acciones</th>
                 </tr>
             </thead>
-            @foreach ($menus as $menu)
+            @foreach ($data as $dato)
             <tbody>
                 <tr>
-                    <td>{{$menu->name}}</td>
-                    <!-- <td>{{$menu->portion}}</td>
-                    <td>{{$menu->username}}</td> -->
-                    <td>{{$menu->days}}</td>
-                    <td>{{$menu->menu_cats}}</td>
+                    <td>{{$dato->username}}</td>
+                    <td>{{$dato->password}}</td>
+                    <td>{{$dato->description}}</td>
                     <td class="td-actions text-right">
-                        <a href="{{ url('/menus/patient/'.$menu->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
+                    <form method="post" action="{{ url('/patient/'.$dato->id.'/delete') }}">
+                        @csrf
+                        {{ method_field('DELETE')}}
+                        <a href="{{ url('/patient/'.$dato->id.'/edit') }}" rel="tooltip" title="editar paciente" class="btn btn-success">
                             <i class="material-icons">edit</i>
                         </a>
+                        <button type="submit" rel="tooltip" title="eliminar paciente" class="btn btn-danger">
+                            <i class="material-icons">close</i>
+                        </button>
+                      </form>
+                        
                     </td>
                 </tr>
             </tbody>
@@ -64,7 +55,7 @@
       </div>
     </div>
   </div>
-    <a href ="{{ url('/menus') }}"class="btn btn-success btn-round">
+    <a href ="{{ url('/patient') }}"class="btn btn-success btn-round">
       <i class="material-icons">keyboard_return</i> Regresar
     </a>
 </div>
