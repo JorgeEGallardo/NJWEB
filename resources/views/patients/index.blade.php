@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Pacientes')
-@section('body-class','profile-page')
+@section('body-class','Pacientes')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
     <div class="container">
@@ -11,36 +11,31 @@
             </div>
         </div>
     </div>
-
 </div>
 <div class="main main-raised">
     <div class="container">
         <div class="section text-center">
             <h2 class="title">Pacientes </h2>
-
+            <a href="{{ url('/patient/add') }}" class="btn btn-primary btn-round">
+                        <i class="material-icons">add_box</i> Añadir nuevo paciente
+            </a>
             <div class="team">
                 <div class="row">
                     <table class="table">
                         <thead>
                             <tr>
-                                <!-- <th class="text-center">#</th> -->
                                 <th>Nombre</th>
+                                <th>Descripción</th>
                                 <th class="text-right">Acciones</th>
                             </tr>
                         </thead>
                         @foreach ($patients as $patient)
                         <tbody>
                             <tr>
-                                <!-- <td class="text-center">{{$patient->id}}</td> -->
                                 <td>{{$patient->username}}</td>
+                                <td>{{$patient->description}}</td>
                                 <td class="td-actions text-right">
-                                        <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-success btn-round">
-                                            <i class="material-icons">add_box</i> Nuevo
-                                        </a>
-                                        <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-success btn-round">
-                                            <i class="material-icons">add_box</i> Existente
-                                        </a>
-                                    <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">
+                                    <a href="{{ url('/patient/'.$patient->id.'/view') }}" rel="tooltip" title="Ver" class="btn btn-success">
                                         <i class="material-icons">info</i>
                                     </a>
                                 </td>

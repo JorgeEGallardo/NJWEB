@@ -26,7 +26,7 @@
           <div class="col-md-4">
             <div class="info">
               <div class="card-image">
-                <a href="/">
+                <a href="/patient">
                   <img class="img img-raised" id="card1" src="{{asset ('/img/logo.png')}}"  />
                 </a>
               </div>
@@ -62,6 +62,20 @@
                 <i class="material-icons">fingerprint</i>
               </div> -->
               <h4 class="info-title">Administracion de rutinas</h4>
+              <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="info">
+            <div class="card-image">
+                <a href="/menus/Asignar">
+                  <img class="img img-raised" id="card1" src="{{asset ('/img/logo.png')}}"  />
+                </a>
+              </div>
+              <!-- <div class="icon icon-danger">
+                <i class="material-icons">fingerprint</i>
+              </div> -->
+              <h4 class="info-title">Catalogo</h4>
               <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
             </div>
           </div>

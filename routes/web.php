@@ -11,21 +11,20 @@
 |
 */
 
-use App\Http\Controllers\MenuController;
 
 Route::get('/', 'WelcomeController@welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+/* Rutas para dietas */
 Route::post('/menus/temp', 'MenuController@pre');
 
 Route::get('/menus', 'MenuController@index'); // listado de pacientes listos para añadir menus
 
-Route::get('/menus/patientMassive', 'MenuController@massiveView');
+Route::get('/menus/patientMassive/{id}', 'MenuController@massiveView');
 Route::post('/menus/patientMassive', 'MenuController@massive');
-
+Route::post('/menus/getCatalog', 'MenuController@getCatalog');
 Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de pacientes
 /* useless
     Route::get('/menus/patient', 'MenuController@create'); //formulario
@@ -33,13 +32,17 @@ Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de
 useless */
 Route::get('/menus/patient/{id}/edit', 'MenuController@edit'); //formulario edicion
 Route::post('/menus/patient/{id}/edit', 'MenuController@update'); //actualizar menus
-
+Route::delete('/menus/patient/{id}', 'MenuController@destroy'); //formulario para eliminar
+Route::get('/menus/Asignar', 'MenuController@existent'); //formulario asignar existente
 Route::delete('/menus/patient/{id}/delete', 'MenuController@destroy'); //formulario para eliminar
-/* Rutas para pacientes  */
 
+/* Rutas para pacientes  */
 Route::get('/patient', 'PatientController@index'); //listado de pacientes
-Route::get('patient/add', 'PatientController@create'); //formulario
-Route::get('patient/add', 'PatientController@store'); //guardar
-Route::get('/patient/edit/{id}', 'PatientController@edit'); //formulario edicion
-Route::post('/menus/edit{id}', 'PatientController@update'); //actualizar usuario
-Route::delete('patient/{id}', 'PatientController@destroy'); //formulario para eliminar
+Route::get('/patient/{id}/view', 'PatientController@view'); //datos del paciente
+Route::get('/patient/add', 'PatientController@create'); //formulario para ingresar a un paciente nuevo
+Route::post('/patient/add', 'PatientController@store'); //guardar informacion del paciente
+Route::get('/patient/{id}/edit', 'PatientController@edit'); //formulario edicion
+Route::post('/patient/{id}/edit', 'PatientController@update'); //actualizar usuario
+Route::delete('/patient/{id}/delete', 'PatientController@destroy'); //formulario para eliminar
+
+/*Rutas para */

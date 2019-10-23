@@ -6,28 +6,35 @@ use Illuminate\Http\Request;
 use App\patient;
 use App\menu;
 use App\recipes;
+use App\catalogos;
+
 class recipe
 {
     public $name;
     public $ingr;
     public $proc;
 }
+
 class MenuController extends Controller
 {
+    //------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------RETURN VIEWS-----------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------
     public function __construct()
     {
         $this->middleware('auth');
     }
-    public function index()
+   public function index()
     {
-        $patients = patient::orderBy('id', 'ASC')->paginate(10); 
+        $patients = patient::orderBy('id', 'ASC')->paginate(10);
         return view('menus.index')->with(compact('patients')); //lista de pacientes
 
     }
+
     public function menus($id)
     {
         /* $menú = \DB::SELECT("Select campos from menú inner join pacientes where menú.id_paciente= paciente.id) */
-        $menus = \DB::SELECT("SELECT menus.id,menus.name, menus.portion, menus.patient_id, menus.day_id, 
+        $menus = \DB::SELECT("SELECT menus.id,menus.name, menus.portion, menus.patient_id, menus.day_id,
         menus.cat_id, patients.username, days.name AS days, menu_cats.name AS menu_cats
         FROM menus
         INNER JOIN patients on menus.patient_id = patients.id
@@ -37,34 +44,99 @@ class MenuController extends Controller
 
         return view('menus.menus')->with(compact('menus')); //lista de comidas
 
-       
+
     }
-    public function massiveView()
+    public function massiveView($id)
     {
 
-        $patients = patient::all();
-        return view('menus.massive')->with(compact('patients')); //lista de pacientes
+        $patients = patient::find($id);
+        return view('menus.massive', ['id'=>$id, 'name'=>$patients->username]); //lista de pacientes
     }
+
+    public function getCatalog(Request $request)
+    {
+        $patients = \DB::select('select * from catalogs where Description Like %?', [$request->search]);
+        return $patients;
+    }
+
+
     public function create()
     {
         $patients = patient::all();
-        //$day = days::all();
-        //return view('menus.create')->with(compact('day')); //lista de dias
-        //return view('menus.create')->with(compact('patients')); //lista de pacientes
-
-        /*     $cats =  \DB::SELECT("SELECT patients.username, days.name AS days, menu_cats.name AS menu_cats
-        FROM menus
-        INNER JOIN patients on menus.patient_id = patients.id
-		INNER JOIN days on menus.day_id = days.id
-        INNER JOIN menu_cats on menus.cat_id= menu_cats.id"); */
         return view('menus.create')->with(compact('patients')); //lista de cats
-
-        return view('menus.create'); //formulario de comidas
     }
+
+    //Devuelve una vista previa de las tablas receta y menus
+    public function pre(Request $request)
+    {
+        return view('Scripts.menuPre')->with(compact('request')); //lista de pacientes
+    }
+    //Devuelve una vista para asignarle a un paciente un menú ya existente en la base de datos
+    public function existent()
+    {
+        $catalog = catalogos::all();
+        return view('menus.exist')->with(compact('catalog'));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------END OF VIEWS-----------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    public function store(Request $request)
+    {
+        //guardar datos
+        //dd($request->all());
+        $menu = new menu();
+        $menu->name = $request->input('name');
+        $menu->portion = $request->input('portion');
+        $menu->patient_id = $request->input('patient_id');
+        $menu->day_id = $request->input('day_id');
+        $menu->cat_id = $request->input('cat_id');
+        $menu->save();
+
+        return redirect('/menus');
+    }
+    public function edit($id)
+    {
+        //return "mostrar aqui el menu con id $id";
+        $menu = menu::find($id);
+        $patients = patient::all();
+        return view('menus.edit')->with(compact('patients', 'menu')); //lista de cats
+
+        //return view('menus.edit'); //formulario de comidas
+    }
+    public function update(Request $request, $id)
+    {
+        //guardar datos
+        //dd($request->all());
+        $menu = menu::find($id);
+        $menu->name = $request->input('name');
+        $menu->portion = $request->input('portion');
+        //$menu -> patient_id = $request->input('patient_id');
+        $menu->day_id = $request->input('day_id');
+        $menu->cat_id = $request->input('cat_id');
+        $menu->save();
+
+        return redirect('/menus');
+    }
+    public function destroy($id)
+    {
+        \DB::delete('delete from menus where patient_id = ?', [$id]);
+
+        return redirect('/menus');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------END OF DEFAULT METHODS-------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------MASIVE METHODS---------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------
+    //Devuelve un arreglo con todas las comidas ordenadas dia->comida del dia->comida  Ej. Lunes->Desayuno->Molletes
     public function menusProc(String $string)
     {
         $raw = $string;
-
         $menu = array(); //Aqui se va a guardar $raw separado por palabras.
         $day = array(); //Aqui van todas las comidas guardadas por dia.
         $tempArray = array(); //Array temporal para separar las comidas de un mismo dia.
@@ -115,16 +187,9 @@ class MenuController extends Controller
             array_push($masterArray, $mealsArray);
         }
         return $masterArray;
-        //Imprimimos todo el arreglo
-        /*for ($i = 0; $i < count($masterArray); $i++) {
-            echo "Dia " . ($i + 1) . ":<br>";
-            for ($j = 0; $j < 5; $j++)
-                echo $mealList[$j] . " " . $masterArray[$i][$j] . "<br>";
-        }*/
     }
-    public function pre(Request $request){
-        return view('Scripts.menuPre')->with(compact('request')); //lista de pacientes
-    }
+
+    //Devuelve un arreglo con todas las recetas de comidas.
     public function recipesProc(string $string)
     {
         $raw = $string;
@@ -168,8 +233,21 @@ class MenuController extends Controller
         array_push($recipes, $recipe);
         return $recipes;
     }
+
+    //Hace la carga de los datos a la base de datos.
     public function massive(Request $request)
     {
+
+        $patient = patient::find($request->input('patient_id'));
+        $patient->description = $request->desc;
+        $patient->save();
+        if($request->desc !=""){
+        $cata = new catalogos();
+        $cata->description = $request->desc; //TODO
+        $cata->menu = $request->input('raw');
+        $cata->recipes = $request->input('rec');
+        $cata->save();
+        }
         \DB::delete('delete from menus where patient_id = ?', [$request->input('patient_id')]);
         $masterArray =  Self::menusProc($request->input('raw'));
         for ($i = 0; $i < count($masterArray); $i++) {
@@ -195,49 +273,5 @@ class MenuController extends Controller
             $recipesP->save();
         }
         return redirect('/menus');
-    }
-    public function store(Request $request)
-    {
-        //guardar datos
-        //dd($request->all());
-        $menu = new menu();
-        $menu->name = $request->input('name');
-        $menu->portion = $request->input('portion');
-        $menu->patient_id = $request->input('patient_id');
-        $menu->day_id = $request->input('day_id');
-        $menu->cat_id = $request->input('cat_id');
-        $menu->save();
-
-        return redirect('/menus');
-    }
-    public function edit($id)
-    {
-        //return "mostrar aqui el menu con id $id";
-        $menu = menu::find($id);
-        $patients = patient::all();
-        return view('menus.edit')->with(compact('patients', 'menu')); //lista de cats
-
-        //return view('menus.edit'); //formulario de comidas
-    }
-    public function update(Request $request, $id)
-    {
-        //guardar datos
-        //dd($request->all());
-        $menu = menu::find($id);
-        $menu->name = $request->input('name');
-        //$menu->portion = $request->input('portion');
-        //$menu -> patient_id = $request->input('patient_id');
-        $menu->day_id = $request->input('day_id');
-        $menu->cat_id = $request->input('cat_id');
-        $menu->save();
-
-        return redirect('/menus');
-    }
-    public function destroy($id)
-    {
-        $menus = \DB::table('menus')->where('patient_id','=', $id)->delete();
-        $recipes = \DB::table('recipes')->where('patient_id','=', $id)->delete();
-        //return $id;
-        return back();
     }
 }
