@@ -33,7 +33,11 @@ class PatientController extends Controller
 
     public function atachIndex($id)
     {
-        return view('patients.atach', ['id'=> $id]);
+        $user = \DB::SELECT("SELECT * FROM patients WHERE id = ?", [$id]);
+        $fullname=$user[0]->fullname;
+        $images = \DB::select('select * from images where auth_by  = ?', [$id]);
+        $domain = 'https://wellnesspal.s3.us-east-2.amazonaws.com/';
+        return view('patients.atach', ['id'=> $id, 'domain'=>$domain, 'name'=>$fullname])->with(compact('images'));
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------

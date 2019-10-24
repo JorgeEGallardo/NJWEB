@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreImage extends FormRequest
+class StoreDocument extends FormRequest
 {
-    /**
+       /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -24,8 +24,8 @@ class StoreImage extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:250',
-            'file' => 'required|image|max:4000'
+            'title' => 'required|max:2050',
+            'file' => 'required|max:4000'
         ];
     }
 }
