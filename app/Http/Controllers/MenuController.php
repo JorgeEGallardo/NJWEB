@@ -24,9 +24,9 @@ class MenuController extends Controller
     {
         $this->middleware('auth');
     }
-   public function index()
+    public function index()
     {
-        $patients = patient::orderBy('id', 'ASC')->paginate(10);
+        $patients = patient::orderBy('id', 'DESC')->paginate(10);
         return view('menus.index')->with(compact('patients')); //lista de pacientes
 
     }
@@ -50,16 +50,16 @@ class MenuController extends Controller
     {
 
         $patients = patient::find($id);
-        return view('menus.massive', ['id'=>$id, 'name'=>$patients->username]); //lista de pacientes
+        return view('menus.massive', ['id' => $id, 'name' => $patients->username]); //lista de pacientes
     }
 
     public function getCatalog(Request $request)
     {
 
         $catalog = \DB::select("select * from catalogos where Description like '$request->search%'");
-        $catalog =catalogos::where('Description', 'like', '%'.$request->search.'%')->paginate(2);
+        $catalog = catalogos::where('Description', 'like', '%' . $request->search . '%')->paginate(2);
         $patients = patient::find($request->patient);
-        return view('menus.table_sub', ['id'=>$request->patient, 'name'=>$patients->username])->with(compact('catalog'));
+        return view('menus.table_sub', ['id' => $request->patient, 'name' => $patients->username])->with(compact('catalog'));
     }
 
 
@@ -80,8 +80,7 @@ class MenuController extends Controller
     {
         $patients = patient::find($id);
         $catalog = catalogos::orderBy('id', 'ASC')->paginate(2);
-        return view('menus.exist', ['id'=>$id, 'name'=>$patients->username])->with(compact('catalog'));
-
+        return view('menus.exist', ['id' => $id, 'name' => $patients->username])->with(compact('catalog'));
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -248,12 +247,12 @@ class MenuController extends Controller
         $patient = patient::find($request->input('patient_id'));
         $patient->description = $request->desc;
         $patient->save();
-        if($request->desc !=""){
-        $cata = new catalogos();
-        $cata->description = $request->desc; //TODO
-        $cata->menu = $request->input('raw');
-        $cata->recipes = $request->input('rec');
-        $cata->save();
+        if ($request->desc != "") {
+            $cata = new catalogos();
+            $cata->description = $request->desc; //TODO
+            $cata->menu = $request->input('raw');
+            $cata->recipes = $request->input('rec');
+            $cata->save();
         }
         \DB::delete('delete from menus where patient_id = ?', [$request->input('patient_id')]);
         $masterArray =  Self::menusProc($request->input('raw'));
@@ -281,10 +280,11 @@ class MenuController extends Controller
         }
         return redirect('/menus');
     }
-    public function massiveEx($idMenu, $idPatient){
+    public function massiveEx($idMenu, $idPatient)
+    {
         $cata = catalogos::find($idMenu);
-       $patient = patient::find($idPatient);
-        $patient->description = $cata->desc;
+        $patient = patient::find($idPatient);
+        $patient->description = $cata->description;
         $patient->save();
         \DB::delete('delete from menus where patient_id = ?', [$idPatient]);
         $masterArray =  Self::menusProc($cata->menu);
@@ -311,6 +311,5 @@ class MenuController extends Controller
             $recipesP->save();
         }
         return redirect('/menus');
-
     }
 }

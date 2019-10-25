@@ -15,7 +15,7 @@ class CreateRoutinesTable extends Migration
     {
         Schema::create('routines', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
+
             $table->string('name');
             $table->integer('series');
             $table->integer('repetitions');
@@ -25,7 +25,7 @@ class CreateRoutinesTable extends Migration
 
             $table->BigInteger('patient_id')->unsigned();
             $table->BigInteger('day_id')->unsigned();
-            
+
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->foreign('day_id')->references('id')->on('days')->onDelete('cascade');
 

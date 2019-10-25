@@ -19,7 +19,7 @@ class CreateMenusTable extends Migration
 
             $table->string('name');
             $table->string('portion');
-            
+
             $table->BigInteger('patient_id')->unsigned();
             $table->BigInteger('day_id')->unsigned();
             $table->BigInteger('cat_id')->unsigned();

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreDocument extends FormRequest
 {
-       /**
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -25,7 +25,7 @@ class StoreDocument extends FormRequest
     {
         return [
             'title' => 'required|max:2050',
-            'file' => 'required|max:4000'
+            'file' => 'required|max:400000'
         ];
     }
 }

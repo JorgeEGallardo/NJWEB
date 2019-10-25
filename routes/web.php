@@ -45,8 +45,9 @@ Route::get('/patient/{id}/edit', 'PatientController@edit'); //formulario edicion
 Route::post('/patient/{id}/edit', 'PatientController@update'); //actualizar usuario
 Route::delete('/patient/{id}/delete', 'PatientController@destroy'); //formulario para eliminar
 
-        //Subir archivos
+//Subir archivos
 Route::get('/patient/{id}/agregar', 'PatientController@atachIndex'); //Imagenes por usuario y archivos
 Route::post('/upload', 'imageController@postUpload')->name('uploadfile');
 Route::post('/upload2', 'documentController@postUpload')->name('uploaddoc');
 Route::get('/deleteimg/{id}', 'imageController@imageDelete');
+Route::get('/deletedoc/{id}', 'documentController@docDelete');

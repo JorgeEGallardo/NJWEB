@@ -15,15 +15,13 @@ class Recipes extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',500);
-            $table->string('ingredients',5000);
-            $table->string('procedure',5000);
+            $table->string('name', 500);
+            $table->string('ingredients', 5000);
+            $table->string('procedure', 5000);
             $table->BigInteger('patient_id')->unsigned();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });
-
-
     }
 
     /**

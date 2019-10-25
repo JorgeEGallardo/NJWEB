@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\document;
 use App\Http\Requests\StoreDocument;
 use Illuminate\Support\Facades\Storage;
+
 class documentController extends Controller
 {
     private $document;
@@ -27,5 +28,18 @@ class documentController extends Controller
         ]);
         $this->document->create($request->only('path', 'title', 'size', 'auth_by'));
         return back()->with('success', 'document Successfully Saved');
+    }
+    public function docDelete($id)
+    {
+        $doc = \DB::select('select * from documents where id = ?', [$id]);
+        $path =  $doc[0]->path;
+        $path = $path;
+        if (Storage::disk('s3')->exists($path)) {
+            Storage::disk('s3')->delete($path);
+            \DB::delete('delete from documents where id = ?', [$id]);
+            return redirect('/patient');
+        } else {
+            return "Documento no encontrado";
+        }
     }
 }

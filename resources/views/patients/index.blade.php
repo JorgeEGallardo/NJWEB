@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
+                                <th>Menú actual</th>
                                 <th class="text-right">Acciones</th>
                             </tr>
                         </thead>

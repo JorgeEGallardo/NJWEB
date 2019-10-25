@@ -1,7 +1,10 @@
 <?php
+
 namespace App;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+
 class Image extends Model
 {
     /* Fillable */
@@ -27,5 +30,4 @@ class Image extends Model
     {
         return round($this->size / 1024, 2);
     }
-
 }

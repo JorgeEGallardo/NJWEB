@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\patient;
+
 class PatientController extends Controller
 {
 
@@ -34,10 +35,11 @@ class PatientController extends Controller
     public function atachIndex($id)
     {
         $user = \DB::SELECT("SELECT * FROM patients WHERE id = ?", [$id]);
-        $fullname=$user[0]->fullname;
+        $fullname = $user[0]->fullname;
         $images = \DB::select('select * from images where auth_by  = ?', [$id]);
+        $documents = \DB::select('select * from documents where auth_by  = ?', [$id]);
         $domain = 'https://wellnesspal.s3.us-east-2.amazonaws.com/';
-        return view('patients.atach', ['id'=> $id, 'domain'=>$domain, 'name'=>$fullname])->with(compact('images'));
+        return view('patients.atach', ['id' => $id, 'domain' => $domain, 'name' => $fullname])->with(compact(['images', 'documents']));
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
