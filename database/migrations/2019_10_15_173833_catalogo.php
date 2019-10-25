@@ -15,13 +15,11 @@ class Catalogo extends Migration
     {
         Schema::create('catalogos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('description',5000);
-            $table->text('menu',50000);
-            $table->text('recipes',50000);
+            $table->text('description', 5000);
+            $table->text('menu', 50000);
+            $table->text('recipes', 50000);
             $table->timestamps();
         });
-
-
     }
 
     /**

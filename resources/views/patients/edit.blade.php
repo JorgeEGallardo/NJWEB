@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group label-floating">
-              <label class="control-label">Nombre completo</label>
+              <label class="control-label">Usuario</label>
               <input type="texto" class="form-control" name="username" value ="{{$patient->username}}" required>
             </div>
           </div>
@@ -33,12 +33,12 @@
           </div>
           <div class="col-sm-6">
             <div class="form-group label-floating">
-              <label class="control-label">Descripcion</label>
-              <input type="texto" class="form-control" name="description" value ="{{$patient->description}}" required>
+              <label class="control-label">Nombre completo</label>
+              <input type="texto" class="form-control" name="name" value ="{{$patient->fullname}}" required>
             </div>
           </div>
         </div>
-        
+
         <button type="submit" class="btn btn-success">Guardar</button>
         <a href="{{url ('/patient')}}" class="btn btn-danger"> Cancelar </a>
       </form>

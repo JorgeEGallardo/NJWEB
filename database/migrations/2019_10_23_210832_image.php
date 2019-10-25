@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Recipes extends Migration
+class Image extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class Recipes extends Migration
      */
     public function up()
     {
-        Schema::create('recipes', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 500);
-            $table->string('ingredients', 5000);
-            $table->string('procedure', 5000);
-            $table->BigInteger('patient_id')->unsigned();
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->string('title');
+            $table->string('path');
+            $table->double('size', 8, 2)->default(0);
+            $table->unsignedInteger('auth_by');
             $table->timestamps();
         });
     }
@@ -31,7 +30,6 @@ class Recipes extends Migration
      */
     public function down()
     {
-
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists('images');
     }
 }
