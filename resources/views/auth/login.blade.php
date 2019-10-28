@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('body-class','login-page sidebar-collapse')
 @section('content')
@@ -21,8 +22,8 @@
                                     <i class="material-icons">mail</i>
                                     </span>
                                 </div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
-                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Correo electronico">    
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Correo electronico">
                             </div>
 
                             <div class="input-group">
@@ -31,25 +32,25 @@
                                     <i class="material-icons">lock_outline</i>
                                     </span>
                                 </div>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                                 name="password" required autocomplete="current-password" placeholder="Contraseña">
-                            
+
                             </div>
 
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" 
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                     {{ old('remember') ? 'checked' : '' }}>
-                                        Recordar sesión 
+                                        Recordar sesión
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
                                 </label>
                             </div>
-                            
+
                         </div>
                         <div class="footer text-center">
-                            <button type="submit" class="btn btn-success btn-link btn-wd btn-lg" 
+                            <button type="submit" class="btn btn-success btn-link btn-wd btn-lg"
                             style="padding-bottom: 10%;">Ingresar</button>
                         </div>
                         <!--<a class="btn btn-link" href="{{ route('password.request') }}">
@@ -62,4 +63,3 @@
     </div>
 </div>
 @endsection
-
