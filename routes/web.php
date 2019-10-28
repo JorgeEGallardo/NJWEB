@@ -51,3 +51,7 @@ Route::post('/upload', 'imageController@postUpload')->name('uploadfile');
 Route::post('/upload2', 'documentController@postUpload')->name('uploaddoc');
 Route::get('/deleteimg/{id}', 'imageController@imageDelete');
 Route::get('/deletedoc/{id}', 'documentController@docDelete');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
