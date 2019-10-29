@@ -25,6 +25,7 @@ Route::get('/menus', 'MenuController@index'); // listado de pacientes listos par
 Route::get('/menus/patientMassive/{id}', 'MenuController@massiveView');
 Route::post('/menus/patientMassive', 'MenuController@massive');
 Route::post('/menus/getCatalog', 'MenuController@getCatalog');
+Route::get('/menus/getMPatients', 'MenuController@getMPatients');
 Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de pacientes
 
 Route::get('/menus/patient/{id}/edit', 'MenuController@edit'); //formulario edicion

@@ -7,6 +7,7 @@ use App\patient;
 use App\menu;
 use App\recipes;
 use App\catalogos;
+use App\patients;
 
 class recipe
 {
@@ -60,6 +61,11 @@ class MenuController extends Controller
         $catalog = catalogos::where('Description', 'like', '%' . $request->search . '%')->paginate(2);
         $patients = patient::find($request->patient);
         return view('menus.table_sub', ['id' => $request->patient, 'name' => $patients->username])->with(compact('catalog'));
+    }
+    public function getMPatients(Request $request)
+    {
+        $patients = patient::where('username', 'like', '%' . $request->search . '%')->orWhere('fullname', 'like', '%' . $request->search . '%')->get();
+        return view('menus.tableAll_sub')->with(compact('patients'));
     }
 
 

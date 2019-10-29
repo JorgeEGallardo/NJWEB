@@ -24,16 +24,17 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Menú actual</th>
+                                <th>Nombre de usuario</th>
+                                <th>Nombre completo</th>
                                 <th class="text-right">Acciones</th>
                             </tr>
                         </thead>
                         @foreach ($patients as $patient)
                         <tbody>
                             <tr>
+
+                                <td>{{$patient->username}}</td>
                                 <td>{{$patient->fullname}}</td>
-                                <td>{{$patient->description}}</td>
                                 <td class="td-actions text-right">
                                     <a href="{{ url('/patient/'.$patient->id.'/view') }}" rel="tooltip" title="Ver" class="btn btn-success">
                                         <i class="material-icons">info</i>

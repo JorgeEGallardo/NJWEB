@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="title">Bienvenido  {{ Auth::user()->name }}</h2>
-          <h5 class="description">-----</h5>
+          <h5 class="description"><hr></h5>
         </div>
       </div>
       <div class="features">
@@ -34,7 +34,7 @@
                 <i class="material-icons">image</i>
               </div> -->
               <h4 class="info-title">Administracion de pacientes</h4>
-              <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+              <p>Módulo para ingresar nuevos pacientes al sistema así como ver, actualizar y borrar su información y/o documentos.</p>
             </div>
           </div>
           <div class="col-md-4">
@@ -65,6 +65,7 @@
               <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
             </div>
           </div>
+          <!------
           <div class="col-md-12">
             <div class="info">
             <div class="card-image">
@@ -75,8 +76,10 @@
               <!-- <div class="icon icon-danger">
                 <i class="material-icons">fingerprint</i>
               </div> -->
+              <!--------
               <h4 class="info-title">Catalogo</h4>
               <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+              --------->
             </div>
           </div>
         </div>

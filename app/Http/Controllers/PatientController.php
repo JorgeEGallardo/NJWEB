@@ -53,6 +53,7 @@ class PatientController extends Controller
         $patient->username = $request->input('username');
         $patient->password = $request->input('password');
         $patient->fullname = $request->input('name');
+        $patient->note = $request->input('note');
         $patient->save();
 
         return redirect('/patient');
@@ -71,6 +72,8 @@ class PatientController extends Controller
         $patient->username = $request->input('username');
         $patient->password = $request->input('password');
         $patient->fullname = $request->input('name');
+        $patient->note = $request->input('note');
+
         $patient->save();
 
         return redirect('/patient');

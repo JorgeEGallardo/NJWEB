@@ -25,6 +25,7 @@
                     <th>Paciente</th>
                     <th>Contraseña</th>
                     <th>Descripcion</th>
+                    <th>Observación</th>
                     <th class="text-right">Acciones</th>
                 </tr>
             </thead>
@@ -34,6 +35,7 @@
                     <td>{{$dato->username}}</td>
                     <td>{{$dato->password}}</td>
                     <td>{{$dato->description}}</td>
+                    <td>{{$dato->note}}</td>
                     <td class="td-actions text-right">
                     <form method="post" action="{{ url('/patient/'.$dato->id.'/delete') }}">
                         @csrf
@@ -45,7 +47,7 @@
                             <i class="material-icons">close</i>
                         </button>
                       </form>
-                        
+
                     </td>
                 </tr>
             </tbody>

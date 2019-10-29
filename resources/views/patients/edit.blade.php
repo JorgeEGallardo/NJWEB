@@ -37,6 +37,12 @@
               <input type="texto" class="form-control" name="name" value ="{{$patient->fullname}}" required>
             </div>
           </div>
+          <div class="col-sm-6">
+            <div class="form-group label-floating">
+              <label class="control-label">Observación</label>
+              <input type="texto" class="form-control" name="note" value ="{{$patient->fullname}}" required>
+            </div>
+          </div>
         </div>
 
         <button type="submit" class="btn btn-success">Guardar</button>
