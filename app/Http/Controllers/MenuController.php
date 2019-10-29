@@ -67,6 +67,11 @@ class MenuController extends Controller
         $patients = patient::where('username', 'like', '%' . $request->search . '%')->orWhere('fullname', 'like', '%' . $request->search . '%')->get();
         return view('menus.tableAll_sub')->with(compact('patients'));
     }
+    public function getPatients(Request $request)
+    {
+        $patients = patient::where('username', 'like', '%' . $request->search . '%')->orWhere('fullname', 'like', '%' . $request->search . '%')->get();
+        return view('patients.table_sub')->with(compact('patients'));
+    }
 
 
     public function create()

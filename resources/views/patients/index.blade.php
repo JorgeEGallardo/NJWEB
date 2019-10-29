@@ -13,6 +13,9 @@
     </div>
 </div>
 <div class="main main-raised">
+        <input type="text" class="m-5" id="str" placeholder="Buscar">
+        <button type="button" onclick="search()" class="btn btn-primary">Buscar</button>
+        <div id="table">
     <div class="container">
         <div class="section text-center">
             <h2 class="title">Pacientes </h2>
@@ -57,4 +60,21 @@
         </div>
     </div>
 </div>
+<script>
+        function search() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "GET",
+                url: '{{url('/menus/getPatients')}}',
+                data: {
+                    "search": document.getElementById("str").value
+                },
+                success: function(Response) {
+                    document.getElementById("table").innerHTML = Response;
+                }
+            });
+        }
+    </script>
 @endsection
