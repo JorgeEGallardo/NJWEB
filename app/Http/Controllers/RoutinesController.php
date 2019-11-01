@@ -183,10 +183,12 @@ class RoutinesController extends Controller
         $names = $routinefull[0];
         $rout = new routines();
         for ($i = 0; $i < count($routine); $i++) {
+            $day2 = new days();
+            $day2->name=$names[$i];
+            $day2->save();
             $day = new days();
-            $day->name=$names[$i];
-            $day->save();
-            $day = \DB::table('days')->latest('created_at')->first();
+            $day = \DB::SELECT("Select id from days order by id DESC limit 1");
+            $idDay =  $day[0]->id;
             for ($j = 0; $j < count($routine[$i]); $j++) {
                 $rout = new routines();
                 $rout->name = $routine[$i][$j][0];
@@ -196,7 +198,7 @@ class RoutinesController extends Controller
                 $rout->rest = $routine[$i][$j][4];
                 $rout->link = $routine[$i][$j][5];
                 $rout->patient_id = $request->input('patient_id');
-                $rout->day_id = $day->id;
+                $rout->day_id = $idDay;
                 $rout->save();
             }
         }
