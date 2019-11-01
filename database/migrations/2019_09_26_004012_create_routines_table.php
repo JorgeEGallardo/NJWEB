@@ -17,9 +17,9 @@ class CreateRoutinesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name');
-            $table->integer('series');
-            $table->integer('repetitions');
-            $table->integer('intensity');
+            $table->string('series');
+            $table->string('repetitions');
+            $table->string('intensity');
             $table->string('rest');
             $table->string('link');
 

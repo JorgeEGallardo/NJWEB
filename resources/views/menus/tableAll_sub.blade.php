@@ -24,9 +24,7 @@
                                     <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-primary">
                                         <i class="material-icons">add_box</i>
                                     </a>
-                                    <a href="{{ url("/menus/Asignar/$patient->id") }}" class="btn btn-primary">
-                                        <i class="material-icons">archive</i>
-                                    </a>
+
                                     <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">
                                         <i class="material-icons">info</i>
                                     </a>

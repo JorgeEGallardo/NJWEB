@@ -2,6 +2,7 @@
 @section('title', 'Pacientes')
 @section('body-class','profile-page')
 @section('content')
+
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
     <div class="container">
         <div class="row">
@@ -42,15 +43,10 @@
                                             <td>{{$patient->username}}</td>
                                             <td>{{$patient->description}}</td>
                                             <td class="td-actions text-right">
-                                                <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-primary">
+                                                <a href="{{ url("/rutinas/patientMassive/$patient->id") }}" class="btn btn-primary">
                                                     <i class="material-icons">add_box</i>
                                                 </a>
-                                                <!-----
-                                                <a href="{{ url("/menus/Asignar/$patient->id") }}" class="btn btn-primary">
-                                                    <i class="material-icons">archive</i>
-                                                </a>
-                                            ------>
-                                                <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">
+                                                <a href="{{ url('/rutinas/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">
                                                     <i class="material-icons">info</i>
                                                 </a>
                                             </td>
@@ -76,7 +72,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "GET",
-                url: '{{url('/menus/getMPatients')}}',
+                url: '{{url('/rutinas/getMPatients')}}',
                 data: {
                     "search": document.getElementById("str").value
                 },

@@ -54,6 +54,14 @@ Route::post('/upload2', 'documentController@postUpload')->name('uploaddoc');
 Route::get('/deleteimg/{id}', 'imageController@imageDelete');
 Route::get('/deletedoc/{id}', 'documentController@docDelete');
 
+
+Route::get('/rutinas', 'RoutinesController@index'); // listado de pacientes listos para añadir menus
+Route::get('/rutinas/getMPatients', 'RoutinesController@getPPatients'); // listado de pacientes listos para añadir menus
+Route::post('/rutinas/patientMassive', 'RoutinesController@massive');
+Route::get('/rutinas/patientMassive/{id}', 'RoutinesController@massiveView');
+Route::post('/rutinas/temp', 'RoutinesController@pre');
+Route::get('/rutinas/patient/{id}', 'RoutinesController@view'); //datos del paciente
+Route::delete('/rutinas/patient/{id}/delete', 'RoutinesController@destroy'); //formulario para eliminar
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
