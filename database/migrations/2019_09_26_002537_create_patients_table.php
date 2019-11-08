@@ -26,7 +26,8 @@ class CreatePatientsTable extends Migration
 
         for ($i = 0; $i < 50; $i++) {
 
-            patient::create(['username' => 'Usuario' . $i, 'password' => 'awaawaawa', 'note' => 'Paciente creado '.$i]);
+            patient::create(['username' => 'Usuario' . $i, 'password' => 'awaawaawa', 'fullname' => 'Name' . $i, 'note' => 'Paciente creado '.$i]);
+
         }
     }
 

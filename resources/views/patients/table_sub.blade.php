@@ -1,8 +1,4 @@
-<div class="section text-center">
-        <h2 class="title">Pacientes </h2>
-        <a href="{{ url('/patient/add') }}" class="btn btn-primary btn-round">
-                    <i class="material-icons">add_box</i> Añadir nuevo paciente
-        </a>
+
         <div class="team">
             <div class="row">
                 <table class="table">
@@ -34,4 +30,8 @@
 
             </div>
         </div>
+        <a href ="{{ url('/patient') }}"class="btn btn-success btn-round">
+            <i class="material-icons">keyboard_return</i> Regresar
+        </a>
+
     </div>

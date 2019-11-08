@@ -74,6 +74,8 @@ class PatientController extends Controller
         $patient->fullname = $request->input('name');
         $patient->note = $request->input('note');
 
+        $patient->description = $request->input('description'); 
+
         $patient->save();
 
         return redirect('/patient');

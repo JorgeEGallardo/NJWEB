@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('body-class','profile-page sidebar-collapse')
-@section('title', 'Creacion de recetas')
+
+@section('title', 'Creacion')
+
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
   <div class="container">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pacientes')
+@section('title', 'Dietas')
 @section('body-class','profile-page')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
@@ -15,21 +15,20 @@
 </div>
 <div class="main main-raised">
 
-        <input type="text" class="m-5" id="str" placeholder="Buscar">
-        <button type="button" onclick="search()" class="btn btn-primary">Buscar</button>
-        <div id="table">
     <div class="container">
             <div class="section text-center">
-                    <h2 class="title">Pacientes </h2>
-
+                    <h2 class="title">Dietas </h2>
+                        <input type="text"class="form-control col-md-12" id="str" placeholder="Buscar">
+                        <button type="button" onclick="search()" class="btn btn-success">Buscar</button>
+                        <div id="table">
                     <div class="team">
                         <div class="row">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <!-- <th class="text-center">#</th> -->
-                                        <th>Nombre</th>
                                         <th>Nombre de usuario</th>
+                                        <th>Nombre </th>
                                         <th>Menú actual</th>
                                         <th class="text-right">Acciones</th>
                                     </tr>
@@ -38,11 +37,13 @@
                                     <tbody>
                                         <tr>
                                             <!-- <td class="text-center">{{$patient->id}}</td> -->
-                                            <td>{{$patient->fullname}}</td>
+
                                             <td>{{$patient->username}}</td>
+                                            <td>{{$patient->fullname}}</td>
                                             <td>{{$patient->description}}</td>
                                             <td class="td-actions text-right">
-                                                <a href="{{ url("/menus/patientMassive/$patient->id") }}" class="btn btn-primary">
+                                                <a href="{{ url("/menus/patientMassive/$patient->id") }}" rel="tooltip" title="Añadir" class="btn btn-success">
+
                                                     <i class="material-icons">add_box</i>
                                                 </a>
                                                 <!-----
@@ -58,10 +59,13 @@
                                     </tbody>
                                     @endforeach
                             </table>
-                            {{ $patients->links() }}
-                    <a href="{{ url('/') }}" class="btn btn-success btn-round">
+                            <a href="{{ url('/') }}" class="btn btn-success btn-round">
                         <i class="material-icons">keyboard_return</i> Regresar
                     </a>
+                    <div id="center">
+                      {{ $patients->links() }}
+                    </div>
+
                 </div>
             </div>
         </div>

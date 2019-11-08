@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('body-class','profile-page sidebar-collapse')
-@section('title', 'Pacientes')
+@section('title', 'Dietas')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
 
@@ -17,7 +17,7 @@
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-      <h2 class="title">Paciente</h2>
+      <h2 class="title">Dietas</h2>
       @if(isset($menus[0]))
       <form method="post" action="{{ url('/menus/patient/'.$menus[0]->patient_id.'/delete') }}">
                         @csrf

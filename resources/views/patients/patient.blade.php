@@ -32,7 +32,7 @@
             @foreach ($data as $dato)
             <tbody>
                 <tr>
-                    <td>{{$dato->username}}</td>
+                    <td>{{$dato->fullname}}</td>
                     <td>{{$dato->password}}</td>
                     <td>{{$dato->description}}</td>
                     <td>{{$dato->note}}</td>

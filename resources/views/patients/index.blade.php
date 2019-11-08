@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Pacientes')
-@section('body-class','Pacientes')
+@section('body-class','profile-page')
+
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
     <div class="container">
@@ -13,16 +14,20 @@
     </div>
 </div>
 <div class="main main-raised">
-        <input type="text" class="m-5" id="str" placeholder="Buscar">
-        <button type="button" onclick="search()" class="btn btn-primary">Buscar</button>
-        <div id="table">
     <div class="container">
-        <div class="section text-center">
+        
+        <div class="text-center">
+        <br>
+            
             <h2 class="title">Pacientes </h2>
-            <a href="{{ url('/patient/add') }}" class="btn btn-primary btn-round">
+            <a href="{{ url('/patient/add') }}" class="btn btn-success btn-round">
                         <i class="material-icons">add_box</i> Añadir nuevo paciente
             </a>
             <div class="team">
+                <input type="text" class="form-control col-md-12" id="str" placeholder="Buscar">
+                <button type="button" onclick="search()" class="btn btn-success">Buscar</button>
+                <div id="table">
+
                 <div class="row">
                     <table class="table">
                         <thead>
@@ -50,11 +55,13 @@
                         </tbody>
                         @endforeach
                     </table>
-
                     <a href="{{ url('/') }}" class="btn btn-success btn-round">
                         <i class="material-icons">keyboard_return</i> Regresar
                     </a>
-                    {{ $patients->links() }}
+                    <div id="center">
+                      {{ $patients->links() }}
+                    </div>
+
                 </div>
             </div>
         </div>
