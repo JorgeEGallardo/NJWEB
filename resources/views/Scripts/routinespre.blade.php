@@ -18,7 +18,10 @@
                         if (strpos($cells[$i], ".com") !== false) {
                             $split  = preg_split('/\r+/', $cells[$i]);
                             $clean = explode(' ', $split[0]);
-                            array_push($cellsCleaned, $clean[0].$clean[1]);
+                            if (isset($clean[1]))
+                                array_push($cellsCleaned, $clean[0] . $clean[1]);
+                            else
+                                array_push($cellsCleaned, $clean[0]);
                             $tempstr = str_replace($split[0], '', $cells[$i]);
                             if (strpos($tempstr, "Día") !== false) {
                                 $clean = explode('Ejer', $cells[$i]);
