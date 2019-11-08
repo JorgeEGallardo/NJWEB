@@ -27,7 +27,7 @@
             <div class="info">
               <div class="card-image">
                 <a href="/patient">
-                  <img class="img img-raised" style="width:15em;" id="card1" src="{{asset ('/img/user.png')}}"  />
+                  <img class="img img-raised" style="width:15em;" id="card1" src="{{asset ('/img/ .png')}}"  />
                 </a>
               </div>
               <!-- <div class="icon icon-info">
