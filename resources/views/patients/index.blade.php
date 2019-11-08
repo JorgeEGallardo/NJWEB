@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Pacientes')
 @section('body-class','profile-page')
+
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
     <div class="container">
@@ -26,6 +27,7 @@
                 <input type="text" class="form-control col-md-12" id="str" placeholder="Buscar">
                 <button type="button" onclick="search()" class="btn btn-success">Buscar</button>
                 <div id="table">
+
                 <div class="row">
                     <table class="table">
                         <thead>
@@ -59,6 +61,7 @@
                     <div id="center">
                       {{ $patients->links() }}
                     </div>
+
                 </div>
             </div>
         </div>

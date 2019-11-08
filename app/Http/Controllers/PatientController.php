@@ -73,6 +73,7 @@ class PatientController extends Controller
         $patient->password = $request->input('password');
         $patient->fullname = $request->input('name');
         $patient->note = $request->input('note');
+
         $patient->description = $request->input('description'); 
 
         $patient->save();

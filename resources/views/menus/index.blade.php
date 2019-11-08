@@ -14,6 +14,7 @@
 
 </div>
 <div class="main main-raised">
+
     <div class="container">
             <div class="section text-center">
                     <h2 class="title">Dietas </h2>
@@ -36,11 +37,13 @@
                                     <tbody>
                                         <tr>
                                             <!-- <td class="text-center">{{$patient->id}}</td> -->
+
                                             <td>{{$patient->username}}</td>
                                             <td>{{$patient->fullname}}</td>
                                             <td>{{$patient->description}}</td>
                                             <td class="td-actions text-right">
                                                 <a href="{{ url("/menus/patientMassive/$patient->id") }}" rel="tooltip" title="Añadir" class="btn btn-success">
+
                                                     <i class="material-icons">add_box</i>
                                                 </a>
                                                 <!-----
@@ -62,6 +65,7 @@
                     <div id="center">
                       {{ $patients->links() }}
                     </div>
+
                 </div>
             </div>
         </div>

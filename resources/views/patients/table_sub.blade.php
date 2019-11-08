@@ -1,3 +1,4 @@
+
         <div class="team">
             <div class="row">
                 <table class="table">
@@ -32,4 +33,5 @@
         <a href ="{{ url('/patient') }}"class="btn btn-success btn-round">
             <i class="material-icons">keyboard_return</i> Regresar
         </a>
+
     </div>

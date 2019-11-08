@@ -39,6 +39,7 @@
           </div>
           <div class="col-sm-6">
             <div class="form-group label-floating">
+
               <label class="control-label">Observaciónes</label>
               <input type="texto" class="form-control" name="note" value ="{{$patient->note}}" required>
             </div>
@@ -50,7 +51,6 @@
               </div>
             </div>
           </div>
-
         <button type="submit" class="btn btn-success">Guardar</button>
         <a href="{{url ('/patient')}}" class="btn btn-danger"> Cancelar </a>
       </form>

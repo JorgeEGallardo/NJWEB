@@ -16,7 +16,6 @@
 </div>
 <div class="main main-raised">
     <div class="container">
-    
             <div class="section text-center">
                     <h2 class="title">Rutinas</h2>
                         <input type="text" class="form-control col-md-12" id="str" placeholder="Buscar">
@@ -42,6 +41,7 @@
                                             <td>{{$patient->note}}</td>
                                             <td class="td-actions text-right">
                                                 <a href="{{ url("/rutinas/patientMassive/$patient->id") }}" rel="tooltip" title="Añadir rutina" class="btn btn-success">
+
                                                     <i class="material-icons">add_box</i>
                                                 </a>
                                                 <a href="{{ url('/rutinas/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">

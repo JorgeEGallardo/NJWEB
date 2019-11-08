@@ -34,7 +34,9 @@
           <div class="col-sm-6">
             <div class="form-group label-floating">
               <label class="control-label">Nombre completo</label>
+
               <input type="texto" class="form-control" name="name" required>
+
             </div>
           </div>
         </div>
