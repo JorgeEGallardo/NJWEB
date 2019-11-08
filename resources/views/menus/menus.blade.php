@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('body-class','profile-page sidebar-collapse')
-@section('title', 'Pacientes')
+@section('title', 'Dietas')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
 
@@ -17,17 +17,21 @@
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-      <h2 class="title">Paciente</h2>
-      <form method="post" action="{{ url('/menus/patient/'.$menus->patient_id.'/delete') }}">
+      <h2 class="title">Dietas</h2>
+      @if(isset($menus[0]))
+      <form method="post" action="{{ url('/menus/patient/'.$menus[0]->patient_id.'/delete') }}">
                         @csrf
                         {{ method_field('DELETE')}}
-                        
-                        <button type="submit" rel="tooltip" title="eliminar menu" class="btn btn-danger">
-                            <i class="material-icons">close</i>
+
+
+                        <button type="submit" rel="tooltip" title="eliminar dieta" class="btn btn-danger">
+                            <i class="material-icons">close</i>Eliminar registros
+
                         </button>
                       </form>
+                      @endif
       <div class="team">
-        <div class="row">     
+        <div class="row">
         <table class="table">
             <thead>
                 <tr>
@@ -48,18 +52,9 @@
                     <td>{{$menu->days}}</td>
                     <td>{{$menu->menu_cats}}</td>
                     <td class="td-actions text-right">
-                      <form method="post" action="{{ url('/menus/patient/'.$menu->patient_id.'/delete') }}">
-                        @csrf
-                        {{ method_field('DELETE')}}
-                        
-                        <button type="submit" rel="tooltip" title="eliminar menu" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                        </button>
-                      </form>
                         <a href="{{ url('/menus/patient/'.$menu->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
                             <i class="material-icons">edit</i>
                         </a>
-                      
                     </td>
                 </tr>
             </tbody>
