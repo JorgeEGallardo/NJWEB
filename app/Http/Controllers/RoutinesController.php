@@ -115,10 +115,13 @@ class RoutinesController extends Controller
         $cells = preg_split('/\t+/', $data);
         $cellsCleaned = array();
         for ($i = 0; $i < count($cells); $i++) {
-            if (strpos($cells[$i], ".com") !== false) {
-                $split  = preg_split('/\r+/', $cells[$i]);
+            if (strpos($cells[$i], ".com") !== false) {//If its a link
+                $split  = preg_split('/\r+/', $cells[$i]); //new column separate by /r /n
                 $clean = explode(' ', $split[0]);
-                array_push($cellsCleaned, $clean[0] . $clean[1]);
+                if (isset($clean[1]))
+                    array_push($cellsCleaned, $clean[0] . $clean[1]);
+                else
+                    array_push($cellsCleaned, $clean[0]);
                 $tempstr = str_replace($split[0], '', $cells[$i]);
                 if (strpos($tempstr, "Día") !== false) {
                     $clean = explode('Ejer', $cells[$i]);
