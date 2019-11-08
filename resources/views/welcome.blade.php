@@ -27,7 +27,7 @@
             <div class="info">
               <div class="card-image">
                 <a href="/patient">
-                  <img class="img img-raised" id="card1" src="{{asset ('/img/user.png')}}"  />
+                  <img class="img img-raised" style="width:15em;" id="card1" src="{{asset ('/img/ .png')}}"  />
                 </a>
               </div>
               <!-- <div class="icon icon-info">
@@ -41,7 +41,7 @@
             <div class="info">
             <div class="card-image">
                 <a href="/menus">
-                  <img class="img img-raised" id="card1" src="{{asset ('/img/food.png')}}"  />
+                  <img class="img img-raised" style="width:15em; height:8.5em;" id="card1" src="{{asset ('/img/food.png')}}"  />
                 </a>
               </div>
             <!--   <div class="icon icon-success">
@@ -55,7 +55,7 @@
             <div class="info">
             <div class="card-image">
                 <a href="/rutinas">
-                  <img class="img img-raised" id="card1" src="{{asset ('/img/exercise.png')}}"  />
+                  <img class="img img-raised" style="width:15em; height:8.5em;" id="card1" src="{{asset ('/img/exercise.png')}}"  />
                 </a>
               </div>
               <!-- <div class="icon icon-danger">
@@ -75,7 +75,7 @@
               </div>
               <div class="icon icon-danger">
                 <i class="material-icons">fingerprint</i>
-              </div> 
+              </div>
               <h4 class="info-title">Catalogo</h4>
               <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
               --------->

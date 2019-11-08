@@ -35,7 +35,13 @@
                     <td>{{$dato->fullname}}</td>
                     <td>{{$dato->password}}</td>
                     <td>{{$dato->description}}</td>
-                    <td>{{$dato->note}}</td>
+                    <td><?php
+
+                    $split  = explode(';', $dato->note);
+                    foreach ($split as $clean) {
+                        echo $clean."<br>";
+                    }
+                    ?></td>
                     <td class="td-actions text-right">
                     <form method="post" action="{{ url('/patient/'.$dato->id.'/delete') }}">
                         @csrf
