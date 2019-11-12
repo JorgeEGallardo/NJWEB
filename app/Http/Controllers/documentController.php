@@ -29,6 +29,12 @@ class documentController extends Controller
         $this->document->create($request->only('path', 'title', 'size', 'auth_by'));
         return back()->with('success', 'document Successfully Saved');
     }
+    public function change($id, $patient){
+        $doc = document::find($id);
+        $doc->visible = !$doc->visible;
+        $doc->save();
+        return redirect('/patient/'.$patient.'/agregar');
+    }
     public function docDelete($id)
     {
         $doc = \DB::select('select * from documents where id = ?', [$id]);
