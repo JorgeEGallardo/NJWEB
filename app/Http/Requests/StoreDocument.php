@@ -25,7 +25,7 @@ class StoreDocument extends FormRequest
     {
         return [
             'title' => 'required|max:2050',
-            'file' => 'required|max:400000'
+            'file' => 'required|mimes:pdf|max:400000'
         ];
     }
 }
