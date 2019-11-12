@@ -26,7 +26,7 @@ class ImageController extends Controller
             'auth_by' => $request->patient
         ]);
         $this->image->create($request->only('path', 'title', 'size', 'auth_by'));
-        return back()->with('success', 'Image Successfully Saved');
+        return back()->with('success', 'Imagen subida a la plataforma');
     }
     public function imageDelete($id)
     {

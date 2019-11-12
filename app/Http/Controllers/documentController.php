@@ -27,7 +27,7 @@ class documentController extends Controller
             'auth_by' => $request->patient
         ]);
         $this->document->create($request->only('path', 'title', 'size', 'auth_by'));
-        return back()->with('success', 'document Successfully Saved');
+        return back()->with('success', 'Documento subido a la plataforma');
     }
     public function docDelete($id)
     {
