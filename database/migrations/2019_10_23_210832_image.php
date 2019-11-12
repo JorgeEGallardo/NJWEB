@@ -17,7 +17,7 @@ class Image extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('path');
-            $table->double('size', 8, 2)->default(0);
+            $table->double('size', 80, 2)->default(0);
             $table->unsignedInteger('auth_by');
             $table->timestamps();
         });
