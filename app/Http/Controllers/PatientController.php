@@ -38,9 +38,11 @@ class PatientController extends Controller
         $fullname = $user[0]->fullname;
         $images = \DB::select('select * from images where auth_by  = ?', [$id]);
         $documents = \DB::select('select * from documents where auth_by  = ?', [$id]);
-        $domain = 'https://wellnesspal.s3.us-east-2.amazonaws.com/';
+        $domain = 'https://adaraw.s3.us-east-2.amazonaws.com/';
         return view('patients.atach', ['id' => $id, 'domain' => $domain, 'name' => $fullname])->with(compact(['images', 'documents']));
     }
+
+
     //------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -74,7 +76,7 @@ class PatientController extends Controller
         $patient->fullname = $request->input('name');
         $patient->note = $request->input('note');
 
-        $patient->description = $request->input('description'); 
+        $patient->description = $request->input('description');
 
         $patient->save();
 

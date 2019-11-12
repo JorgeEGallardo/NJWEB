@@ -18,6 +18,7 @@ class document extends Migration
             $table->string('title');
             $table->string('path');
             $table->string('size')->default(0);
+            $table->boolean('visible')->default(false);
             $table->unsignedInteger('auth_by');
             $table->timestamps();
         });

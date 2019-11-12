@@ -48,14 +48,23 @@
                 </div>
             </div>
         </div>
-        
+
         <h2>Documentos</h2>
         <div>
             @foreach ($documents as $document)
-                <div class="card" style="width:30%;height:100%; margin:5%; float:left">
-                    <a href='{{ url("deletedoc/$document->id")}}'' rel="tooltip" title="Eliminar" class="btn btn-danger" style="float:right; width:10%;margin-bottom:-7%;margin-left:80%">
-                        x
+                <div class="card" style="width:27%;height:100%; margin-right:5%; float:left">
+                    <a href='{{ url("deletedoc/$document->id")}}'' rel="tooltip" title="Eliminar" class="btn btn-danger" style="float:right; width:10%;padding:2%;margin-bottom:-9.9%;margin-top:0%;;margin-left:90%">
+                        <i class="material-icons">delete</i>
                     </a>
+                    @if ($document->visible)
+                    <a href='{{ url("change/$document->id/$id")}}'' rel="tooltip" title="Hacer no visible" class="btn btn-success" style="float:left; width:10%;padding:2%;margin-bottom:-15%;margin-right:80%">
+                        <i class="material-icons">visibility</i>
+                    </a>
+                    @else
+                    <a href='{{ url("change/$document->id/$id")}}'' rel="tooltip" title="Hacer visible" class="btn btn-danger" style="float:left; width:10%;padding:2%;margin-bottom:-15%;margin-right:80%">
+                        <i class="material-icons">visibility_off</i>
+                    </a>
+                    @endif
                     <img class="card-img-top" src="{{url('img/document.png')}}" alt="Card image" style="width:80%; margin:10%   ">
                     <div class="card-body">
                         <h4 class="card-title">{{$document->title}}</h4>
@@ -66,7 +75,7 @@
             @endforeach
         </div>
 
-            <div class="container"> 
+            <div class="container">
                 <form action="{{ route('uploadfile') }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <input type="hidden" name="patient" value={{$id}}>
@@ -77,7 +86,7 @@
                             <input type="hidden" value="Paciente {{$name}}" name="title" id="caption" class="form-control"></textarea>
                             <span class="help-block text-danger">{{$errors->first('title')}}</span>
                         </div>
-                        
+
 
                     </div>
                     <button class="btn btn-primary">Subir una nueva imagen</button>

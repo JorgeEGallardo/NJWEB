@@ -53,6 +53,7 @@ Route::post('/upload', 'imageController@postUpload')->name('uploadfile');
 Route::post('/upload2', 'documentController@postUpload')->name('uploaddoc');
 Route::get('/deleteimg/{id}', 'imageController@imageDelete');
 Route::get('/deletedoc/{id}', 'documentController@docDelete');
+Route::get('/change/{id}/{patient}', 'documentController@change');
 
 
 Route::get('/rutinas', 'RoutinesController@index'); // listado de pacientes listos para añadir menus
