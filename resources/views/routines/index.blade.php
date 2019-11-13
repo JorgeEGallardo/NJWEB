@@ -38,7 +38,12 @@
                                             <!-- <td class="text-center">{{$patient->id}}</td> -->
                                             <td>{{$patient->username}}</td>
                                             <td>{{$patient->fullname}}</td>
-                                            <td>{{$patient->note}}</td>
+                                            <td><?php
+                                            $split  = explode(';', $patient->note);
+                                            foreach ($split as $clean) {
+                                                echo $clean."<br>";
+                                            }
+                                            ?></td>
                                             <td class="td-actions text-right">
                                                 <a href="{{ url("/rutinas/patientMassive/$patient->id") }}" rel="tooltip" title="Añadir rutina" class="btn btn-success">
 

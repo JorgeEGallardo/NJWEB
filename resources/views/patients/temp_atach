@@ -97,3 +97,19 @@
                         </div>
 
 @endsection
+
+
+
+
+
+
+ <form method="post" action="{{ url('/patient/'.$dato->id.'/delete') }}">
+    @csrf
+    {{ method_field('DELETE')}}
+    <a href="{{ url('/patient/'.$dato->id.'/edit') }}" rel="tooltip" title="editar paciente" class="btn btn-success">
+    <i class="material-icons">edit</i>
+    </a>
+    <button type="submit" rel="tooltip" title="eliminar paciente" class="btn btn-danger">
+    <i class="material-icons">close</i>
+    </button>
+</form>
