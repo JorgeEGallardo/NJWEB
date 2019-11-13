@@ -27,7 +27,7 @@
             <div class="info">
               <div class="card-image">
                 <a href="/patient">
-                  <img class="img img-raised" style="width:15em;" id="card1" src="{{asset ('/img/ .png')}}"  />
+                  <img class="img img-raised"  id="card1" src="{{asset ('/img/user.png')}}"  />
                 </a>
               </div>
               <!-- <div class="icon icon-info">
@@ -41,7 +41,7 @@
             <div class="info">
             <div class="card-image">
                 <a href="/menus">
-                  <img class="img img-raised" style="width:15em; height:8.5em;" id="card1" src="{{asset ('/img/food.png')}}"  />
+                  <img class="img img-raised"  id="card1" src="{{asset ('/img/food.png')}}"  />
                 </a>
               </div>
             <!--   <div class="icon icon-success">
@@ -55,7 +55,7 @@
             <div class="info">
             <div class="card-image">
                 <a href="/rutinas">
-                  <img class="img img-raised" style="width:15em; height:8.5em;" id="card1" src="{{asset ('/img/exercise.png')}}"  />
+                  <img class="img img-raised"  id="card1" src="{{asset ('/img/exercise.png')}}"  />
                 </a>
               </div>
               <!-- <div class="icon icon-danger">

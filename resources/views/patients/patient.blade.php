@@ -43,15 +43,15 @@
                     }
                     ?></td>
                     <td class="td-actions text-right">
-                    <form method="post" action="{{ url('/patient/'.$dato->id.'/delete') }}">
-                        @csrf
-                        {{ method_field('DELETE')}}
-                        <a href="{{ url('/patient/'.$dato->id.'/edit') }}" rel="tooltip" title="editar paciente" class="btn btn-success">
-                            <i class="material-icons">edit</i>
-                        </a>
-                        <button type="submit" rel="tooltip" title="eliminar paciente" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                        </button>
+                    
+                      <form >
+                          <a href="{{ url('/patient/'.$dato->id.'/edit') }}" rel="tooltip" title="editar paciente" class="btn btn-success">
+                          <i class="material-icons">edit</i>
+                          </a>
+                    <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-danger" rel="tooltip" title="eliminar paciente" data-toggle="modal" data-target="#delete">
+                          <i class="material-icons">close</i>
+                          </button>
                       </form>
 
                     </td>
@@ -66,5 +66,31 @@
     <a href ="{{ url('/patient') }}"class="btn btn-success btn-round">
       <i class="material-icons">keyboard_return</i> Regresar
     </a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLongTitle">¡Alerta!</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5> Estas apunto de eliminar todos los datos relacionados con el paciente -{{$dato->fullname}}- </h5>
+        <h4> ¿Seguro que deseas continuar?</h4>
+      </div>
+      <div class="modal-footer">
+      <form method="post" action="{{ url('/patient/'.$dato->id.'/delete') }}">
+        @csrf
+        {{ method_field('DELETE')}}
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="submit" class="btn btn-success">Si</button>
+    </form>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

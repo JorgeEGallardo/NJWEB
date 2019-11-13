@@ -51,14 +51,33 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         //guardar datos
-        $patient = new patient();
-        $patient->username = $request->input('username');
-        $patient->password = $request->input('password');
-        $patient->fullname = $request->input('name');
-        $patient->note = $request->input('note');
-        $patient->save();
+        
 
-        return redirect('/patient');
+        $val = \DB::SELECT("SELECT * FROM patients WHERE username = ?", [ $request->input('username')]);
+        
+
+        if($val){ 
+
+            $alert = "El nombre de usuario esta en uso";
+            echo "<script type='text/javascript'>
+            danger(); 
+            function danger() {
+                alert('$alert');
+                location.replace('/patient/add')
+              }
+            </script>";
+        } else {
+           $patient = new patient();
+            $patient->username = $request->input('username');
+            $patient->password = $request->input('password');
+            $patient->fullname = $request->input('name');
+            $patient->note = $request->input('note');
+            $patient->save();
+            
+            return redirect('/patient');
+        }
+        
+        
     }
     public function edit($id)
     {
@@ -70,6 +89,7 @@ class PatientController extends Controller
     }
     public function update(Request $request, $id)
     {
+
         $patient = patient::find($id);
         $patient->username = $request->input('username');
         $patient->password = $request->input('password');
