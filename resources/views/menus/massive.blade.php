@@ -51,7 +51,7 @@
     function awa() {
         $.ajax({
             type: "POST",
-            url: '{{url(' / menus / temp ')}}',
+            url: '{{url('/menus/temp')}}',
             data: $("form").serialize(),
             success: function(Response) {
                 document.getElementById("auch").innerHTML = Response;
