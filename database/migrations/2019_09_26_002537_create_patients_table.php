@@ -23,12 +23,7 @@ class CreatePatientsTable extends Migration
             $table->text('note', 5000)->nullable();
             $table->timestamps();
         });
-
-        for ($i = 0; $i < 50; $i++) {
-
-            patient::create(['username' => 'Usuario' . $i, 'password' => 'awaawaawa', 'fullname' => 'Name' . $i, 'note' => 'Paciente creado '.$i]);
-
-        }
+            patient::create(['username' => 'PacientesSinCredenciales', 'password' => '123456789', 'fullname' => 'Pacientes Sin Credenciales', 'note' => 'Paciente creado para guardar los documentos online']);
     }
 
     /**
