@@ -16,7 +16,7 @@ Route::get('/', 'WelcomeController@welcome');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 /* Rutas para dietas */
 Route::post('/menus/temp', 'MenuController@pre');
 
@@ -32,6 +32,8 @@ Route::get('/menus/patient/{id}', 'MenuController@menus'); //listado de menus de
 Route::get('/menus/patient/{id}/edit', 'MenuController@edit'); //formulario edicion
 Route::post('/menus/patient/{id}/edit', 'MenuController@update'); //actualizar menus
 Route::delete('/menus/patient/{id}', 'MenuController@destroy'); //formulario para eliminar
+
+Route::get('/menus/recipes/{id}', 'MenuController@getRecipes'); //listado de recetas
 
 Route::get('/menus/As/{id}', 'MenuController@existent'); //formulario asignar existente
 Route::get('/menus/Asignar/{id}', 'MenuController@existent'); //formulario asignar existente
@@ -55,9 +57,9 @@ Route::get('/deleteimg/{id}', 'imageController@imageDelete');
 Route::get('/deletedoc/{id}', 'documentController@docDelete');
 Route::get('/change/{id}/{patient}', 'documentController@change');
 
-
-Route::get('/rutinas', 'RoutinesController@index'); // listado de pacientes listos para añadir menus
-Route::get('/rutinas/getMPatients', 'RoutinesController@getPPatients'); // listado de pacientes listos para añadir menus
+/* Rutas para rutinas  */
+Route::get('/rutinas', 'RoutinesController@index'); // listado de pacientes listos para añadir rutinas
+Route::get('/rutinas/getMPatients', 'RoutinesController@getPPatients'); 
 Route::post('/rutinas/patientMassive', 'RoutinesController@massive');
 Route::get('/rutinas/patientMassive/{id}', 'RoutinesController@massiveView');
 Route::post('/rutinas/temp', 'RoutinesController@pre');
@@ -65,4 +67,4 @@ Route::get('/rutinas/patient/{id}', 'RoutinesController@view'); //datos del paci
 Route::delete('/rutinas/patient/{id}/delete', 'RoutinesController@destroy'); //formulario para eliminar
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

@@ -15,7 +15,7 @@
 <div class="main main-raised">
     <div class="container">
         <div class="section text-center">
-            <h2 class="title">Añadir menu</h2>
+            <h2 class="title">Añadir Dieta</h2>
             <form method="post" action="{{ url('/menus/patientMassive') }}">
                 @csrf
 

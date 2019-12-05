@@ -25,12 +25,6 @@
               <input type="texto" class="form-control" name="name" value="{{ $menu->name}}" required>
             </div>
           </div>
-<!--           <div class="col-sm-6">
-            <div class="form-group label-floating">
-              <label class="control-label">Porcion</label>
-              <input type="texto" class="form-control" name="portion" value="{{ $menu->portion}}" required>
-            </div>
-          </div> -->
         </div>
         <div class="row">
           <div class="form-group col-sm-6">
@@ -59,14 +53,6 @@
             <option value="7">Domingo</option>
             </select>
           </div> 
-          <!-- <div class="form-group col-sm-4">
-            <label for="exampleFormControlSelect1">Pacientes</label>
-            <select name ="patient_id" class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
-              @foreach ($patients as $patient)
-              <option value="{{$patient->id}}">{{$patient->username}}</option>
-              @endforeach
-            </select>
-          </div> -->
         </div>
         <button type="submit" class="btn btn-success">Guardar cambios</button>
         <a href="{{url ('/menus')}}" class="btn btn-danger"> Cancelar </a>

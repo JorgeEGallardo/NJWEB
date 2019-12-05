@@ -89,7 +89,7 @@
 
 
                     </div>
-                    <button class="btn btn-primary">Subir una nueva imagen</button>
+                    <button class="btn btn-success">Subir una nueva imagen</button>
                 </form>
 
                 <form action="{{ route('uploaddoc') }}" enctype="multipart/form-data" method="post">
@@ -103,7 +103,7 @@
                             <span class="help-block text-danger">{{$errors->first('title')}}</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary">Subir un documento nuevo</button>
+                    <button class="btn btn-success">Subir un documento nuevo</button>
                 </form>
 
     </div>

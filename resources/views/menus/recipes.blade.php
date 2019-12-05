@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('body-class','profile-page sidebar-collapse')
-@section('title', 'Dietas')
+@section('title', 'Recetas')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
 
@@ -17,45 +17,30 @@
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-      <h2 class="title">Dietas</h2>
-      @if(isset($menus[0]))
-      <form method="post" action="{{ url('/menus/patient/'.$menus[0]->patient_id.'/delete') }}">
-                        @csrf
-                        {{ method_field('DELETE')}}
-
-
-                        <button type="submit" rel="tooltip" title="eliminar dieta" class="btn btn-danger">
-                            <i class="material-icons">close</i>Eliminar registros
-
-                        </button>
-                      </form>
-                      @endif
+      <h2 class="title">Recetas</h2>
       <div class="team">
         <div class="row">
         <table class="table">
             <thead>
                 <tr>
                     <th>Comida</th>
-                    <!-- <th>Porcion</th>
-                    <th>Paciente</th> -->
-                    <th>Día</th>
-                    <th>Tipo</th>
+                    <th>Ingredientes</th>
+                    <th>procedimiento</th>
                     <!-- <th class="text-right">Acciones</th> -->
                 </tr>
             </thead>
-            @foreach ($menus as $menu)
+            @foreach ($recipes as $re)
             <tbody>
                 <tr>
-                    <td>{{$menu->name}}</td>
-                    <!-- <td>{{$menu->portion}}</td>
-                    <td>{{$menu->username}}</td> -->
-                    <td>{{$menu->days}}</td>
-                    <td>{{$menu->menu_cats}}</td>
-                    <td class="td-actions text-right">
-                        <a href="{{ url('/menus/patient/'.$menu->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
+                    <td>{{$re->name}}</td>
+
+                    <td>{{$re->ingredients}}</td>
+                    <td>{{$re->procedure}}</td>
+                   <!--  <td class="td-actions text-right">
+                        <a href="{{ url('/menus/recipes/'.$re->id.'/edit') }}" rel="tooltip" title="editar menu" class="btn btn-success">
                             <i class="material-icons">edit</i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
             @endforeach

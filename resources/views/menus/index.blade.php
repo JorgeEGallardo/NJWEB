@@ -46,12 +46,11 @@
 
                                                     <i class="material-icons">add_box</i>
                                                 </a>
-                                                <!-----
-                                                <a href="{{ url("/menus/Asignar/$patient->id") }}" class="btn btn-primary">
-                                                    <i class="material-icons">archive</i>
+
+                                                <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver menu" class="btn btn-success">
+                                                    <i class="material-icons">info</i>
                                                 </a>
-                                            ------>
-                                                <a href="{{ url('/menus/patient/'.$patient->id.'') }}" rel="tooltip" title="Ver" class="btn btn-success">
+                                                <a href="{{ url('/menus/recipes/'.$patient->id.'') }}" rel="tooltip" title="Ver recetas" class="btn btn-success">
                                                     <i class="material-icons">info</i>
                                                 </a>
                                             </td>

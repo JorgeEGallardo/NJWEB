@@ -36,11 +36,10 @@
             <thead>
                 <tr>
                     <th>Ejercicio</th>
-                    <th>Porcion</th>
-                    <th>Paciente</th>
-                    <th>Día</th>
-                    <th>Tipo</th>
-                    <th class="text-right">Acciones</th>
+                    <th>Series</th>
+                    <th>repeticiones</th>
+                    <th>Intensidad</th>
+                    <th>Link</th>
                 </tr>
             </thead>
             @foreach ($routines as $routine)
@@ -51,7 +50,7 @@
                     <td>{{$routine->repetitions}}</td>
                     <td>{{$routine->intensity}}</td>
                     <td>{{$routine->link}}</td>
-                    <td>{{$routine->days}}</td>
+                    
                 </tr>
             </tbody>
             @endforeach
