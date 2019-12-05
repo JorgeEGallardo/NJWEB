@@ -2,7 +2,7 @@
 @section('body-class','login-page sidebar-collapse')
 @section('content')
 <div class="page-header header-filter" 
-style="background-image: url('{{asset('img/bg7.jpg')}}'); background-size: cover; background-position: top center;">
+style="background-image: url('{{asset('img/cover-index.png')}}'); background-size: cover; background-position: top center;">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
@@ -11,9 +11,9 @@ style="background-image: url('{{asset('img/bg7.jpg')}}'); background-size: cover
                         @csrf
 
                         <div class="card-header card-header-info text-center">
-                            <h4 class="card-title">Registro de pacientes</h4>
+                            <h4 class="card-title">Registro de usuarios</h4>
                         </div>
-                            <p class="description text-center">Ingresa los datos del paciente</p>
+                            <p class="description text-center">Ingresa los datos del usuario</p>
                         <div class="card-body">
 
                             <div class="input-group">

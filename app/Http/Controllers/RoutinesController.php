@@ -24,8 +24,8 @@ class RoutinesController extends Controller
     }
     public function view($id)
     {
-        /* $menú = \DB::SELECT("Select campos from menú inner join pacientes where menú.id_paciente= paciente.id) */
-        $routines = \DB::SELECT("SELECT routines.id,routines.name, routines.series, routines.repetitions, routines.intensity,routines.rest,routines.link,
+       
+    $routines = \DB::SELECT("SELECT routines.id,routines.name, routines.series, routines.repetitions, routines.intensity,routines.rest,routines.link,
     patients.username, days.name AS days, routines.patient_id
     FROM routines
     INNER JOIN patients on routines.patient_id = patients.id
@@ -44,11 +44,11 @@ class RoutinesController extends Controller
         $patients = patient::where('username', 'like', '%' . $request->search . '%')->orWhere('fullname', 'like', '%' . $request->search . '%')->get();
         return view('routines.tableAll_sub')->with(compact('patients'));
     }
-    public function create()
+/*     public function create()
     {
         $patients = patient::all();
         return view('patients.create')->with(compact('patients')); //lista de cats
-    }
+    } */
 
     //Devuelve una vista previa de las tablas receta y menus
     public function pre(Request $request)
@@ -63,34 +63,28 @@ class RoutinesController extends Controller
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------
 
-    public function store(Request $request)
+/*     public function store(Request $request)
     {
         return redirect('/rutinas');
     }
     public function edit($id)
     {
-        //return "mostrar aqui el menu con id $id";
         $routines = routines::find($id);
         $patients = patient::all();
-        return view('routines.edit')->with(compact('patients', 'routines')); //lista de cats
+        return view('routines.edit')->with(compact('patients', 'routines')); 
 
-
-        //return view('menus.edit'); //formulario de comidas
     }
     public function update(Request $request, $id)
     {
-        //guardar datos
-        //dd($request->all());
         $menu = menu::find($id);
         $menu->name = $request->input('name');
         $menu->portion = $request->input('portion');
-        //$menu -> patient_id = $request->input('patient_id');
         $menu->day_id = $request->input('day_id');
         $menu->cat_id = $request->input('cat_id');
         $menu->save();
 
         return redirect('/menus');
-    }
+    } */
     public function destroy($id)
     {
         \DB::delete('delete from routines where patient_id = ?', [$id]);

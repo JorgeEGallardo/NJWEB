@@ -18,18 +18,18 @@ class PatientController extends Controller
     public function index()
     {
         $patients = patient::orderBy('id', 'DESC')->paginate(10);
-        return view('patients.index')->with(compact('patients')); //lista de pacientes
+        return view('patients.index')->with(compact('patients'));
 
     }
     public function view($id)
     {
         $data = \DB::SELECT("SELECT * FROM patients WHERE id = ?", [$id]);
-        return view('patients.patient')->with(compact('data')); //lista de comidas
+        return view('patients.patient')->with(compact('data')); 
     }
     public function create()
     {
         $patient = patient::all();
-        return view('patients.create')->with(compact('patient')); //lista de cats
+        return view('patients.create')->with(compact('patient')); 
     }
 
     public function atachIndex($id)
@@ -50,14 +50,8 @@ class PatientController extends Controller
 
     public function store(Request $request)
     {
-        //guardar datos
-        
-
         $val = \DB::SELECT("SELECT * FROM patients WHERE username = ?", [ $request->input('username')]);
-        
-
         if($val){ 
-
             $alert = "El nombre de usuario esta en uso";
             echo "<script type='text/javascript'>
             danger(); 
@@ -76,36 +70,42 @@ class PatientController extends Controller
             
             return redirect('/patient');
         }
-        
-        
     }
     public function edit($id)
     {
-        //return "mostrar aqui el paciente con id $id";
         $patient = patient::find($id);
-        return view('patients.edit')->with(compact('patient')); //lista de cats
-
-        //return view('menus.edit'); //formulario de comidas
+        return view('patients.edit')->with(compact('patient')); 
     }
     public function update(Request $request, $id)
     {
-
         $patient = patient::find($id);
-        $patient->username = $request->input('username');
-        $patient->password = $request->input('password');
-        $patient->fullname = $request->input('name');
-        $patient->note = $request->input('note');
+        $val = \DB::SELECT("SELECT * FROM patients WHERE username = ? AND username <> ?", [ $request->input('username'),$patient->username] );
 
-        $patient->description = $request->input('description');
+        if($val){ 
+            $alert = "El nombre de usuario esta en uso";
+            echo "<script type='text/javascript'>
+            danger(); 
+            function danger() {
+                alert('$alert');
+                location.replace('/patient/$id/edit')
+              }
+            </script>";
+        } else{
+            $patient = patient::find($id);
+            $patient->username = $request->input('username');
+            $patient->password = $request->input('password');
+            $patient->fullname = $request->input('name');
+            $patient->note = $request->input('note');
+            $patient->description = $request->input('description');
+            $patient->save();
+    
+            return redirect('/patient');
+        }
 
-        $patient->save();
-
-        return redirect('/patient');
     }
     public function destroy($id)
     {
         \DB::delete('delete from patients where id = ?', [$id]);
-
         return redirect('/patient');
     }
 }

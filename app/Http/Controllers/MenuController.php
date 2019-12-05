@@ -34,7 +34,6 @@ class MenuController extends Controller
 
     public function menus($id)
     {
-        /* $menú = \DB::SELECT("Select campos from menú inner join pacientes where menú.id_paciente= paciente.id) */
         $menus = \DB::SELECT("SELECT menus.id,menus.name, menus.portion, menus.patient_id, menus.day_id,
         menus.cat_id, patients.username, days.name AS days, menu_cats.name AS menu_cats
         FROM menus
@@ -43,15 +42,21 @@ class MenuController extends Controller
         INNER JOIN menu_cats on menus.cat_id= menu_cats.id
         WHERE patient_id = $id order by menus.day_id, menus.cat_id");
 
-        return view('menus.menus')->with(compact('menus')); //lista de comidas
+        return view('menus.menus')->with(compact('menus')); 
 
 
     }
+
+    public function getRecipes($id){
+        $recipes = \DB::SELECT("SELECT * FROM recipes WHERE patient_id = ?", [$id]);
+        return view('menus.recipes')->with(compact('recipes'));
+    }
+
     public function massiveView($id)
     {
 
         $patients = patient::find($id);
-        return view('menus.massive', ['id' => $id, 'name' => $patients->username]); //lista de pacientes
+        return view('menus.massive', ['id' => $id, 'name' => $patients->username]); 
     }
 
     public function getCatalog(Request $request)
@@ -71,13 +76,6 @@ class MenuController extends Controller
     {
         $patients = patient::where('username', 'like', '%' . $request->search . '%')->orWhere('fullname', 'like', '%' . $request->search . '%')->get();
         return view('patients.table_sub')->with(compact('patients'));
-    }
-
-
-    public function create()
-    {
-        $patients = patient::all();
-        return view('menus.create')->with(compact('patients')); //lista de cats
     }
 
     //Devuelve una vista previa de las tablas receta y menus
@@ -100,10 +98,9 @@ class MenuController extends Controller
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------
 
-    public function store(Request $request)
+/*     public function store(Request $request)
     {
         //guardar datos
-        //dd($request->all());
         $menu = new menu();
         $menu->name = $request->input('name');
         $menu->portion = $request->input('portion');
@@ -113,25 +110,18 @@ class MenuController extends Controller
         $menu->save();
 
         return redirect('/menus');
-    }
+    } */
     public function edit($id)
     {
-        //return "mostrar aqui el menu con id $id";
         $menu = menu::find($id);
         $patients = patient::all();
-        return view('menus.edit')->with(compact('patients', 'menu')); //lista de cats
+        return view('menus.edit')->with(compact('patients', 'menu')); 
 
-
-        //return view('menus.edit'); //formulario de comidas
     }
     public function update(Request $request, $id)
     {
-        //guardar datos
-        //dd($request->all());
         $menu = menu::find($id);
         $menu->name = $request->input('name');
-        $menu->portion = $request->input('portion');
-        //$menu -> patient_id = $request->input('patient_id');
         $menu->day_id = $request->input('day_id');
         $menu->cat_id = $request->input('cat_id');
         $menu->save();
@@ -233,7 +223,9 @@ class MenuController extends Controller
                 }
                 $name = $menu[$i];
                 $isProc = false;
-            } else if (strpos(strtolower($menu[$i]), "prepar") !== false || strpos(strtolower($menu[$i]), "elaboraci") !== false) {
+            } else if (strpos(strtolower($menu[$i]), "prepar") !== false 
+                || strpos(strtolower($menu[$i]), "elaboraci") !== false 
+                || strpos(strtolower($menu[$i]), "proced") !== false) {
                 $isProc = true;
             } else {
                 if ($isProc)
