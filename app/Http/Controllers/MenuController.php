@@ -40,9 +40,9 @@ class MenuController extends Controller
         INNER JOIN patients on menus.patient_id = patients.id
 		INNER JOIN days on menus.day_id = days.id
         INNER JOIN menu_cats on menus.cat_id= menu_cats.id
-        WHERE patient_id = $id order by menus.day_id, menus.cat_id");
+        WHERE patient_id = ? order by menus.day_id, menus.cat_id", [$id]);
 
-        return view('menus.menus')->with(compact('menus')); 
+        return view('menus.menus')->with(compact('menus'));
 
 
     }
@@ -56,13 +56,13 @@ class MenuController extends Controller
     {
 
         $patients = patient::find($id);
-        return view('menus.massive', ['id' => $id, 'name' => $patients->username]); 
+        return view('menus.massive', ['id' => $id, 'name' => $patients->username]);
     }
 
     public function getCatalog(Request $request)
     {
 
-        $catalog = \DB::select("select * from catalogos where Description like '$request->search%'");
+        $catalog = \DB::select("select * from catalogos where Description like '?%'", [$request->search]);
         $catalog = catalogos::where('Description', 'like', '%' . $request->search . '%')->paginate(2);
         $patients = patient::find($request->patient);
         return view('menus.table_sub', ['id' => $request->patient, 'name' => $patients->username])->with(compact('catalog'));
@@ -115,7 +115,7 @@ class MenuController extends Controller
     {
         $menu = menu::find($id);
         $patients = patient::all();
-        return view('menus.edit')->with(compact('patients', 'menu')); 
+        return view('menus.edit')->with(compact('patients', 'menu'));
 
     }
     public function update(Request $request, $id)
@@ -223,8 +223,8 @@ class MenuController extends Controller
                 }
                 $name = $menu[$i];
                 $isProc = false;
-            } else if (strpos(strtolower($menu[$i]), "prepar") !== false 
-                || strpos(strtolower($menu[$i]), "elaboraci") !== false 
+            } else if (strpos(strtolower($menu[$i]), "prepar") !== false
+                || strpos(strtolower($menu[$i]), "elaboraci") !== false
                 || strpos(strtolower($menu[$i]), "proced") !== false) {
                 $isProc = true;
             } else {

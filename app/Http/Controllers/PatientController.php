@@ -24,12 +24,16 @@ class PatientController extends Controller
     public function view($id)
     {
         $data = \DB::SELECT("SELECT * FROM patients WHERE id = ?", [$id]);
-        return view('patients.patient')->with(compact('data')); 
+        if ($data)
+        return view('patients.patient')->with(compact('data'));
+        else
+        return redirect('/patient');
+
     }
     public function create()
     {
         $patient = patient::all();
-        return view('patients.create')->with(compact('patient')); 
+        return view('patients.create')->with(compact('patient'));
     }
 
     public function atachIndex($id)
@@ -51,10 +55,10 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $val = \DB::SELECT("SELECT * FROM patients WHERE username = ?", [ $request->input('username')]);
-        if($val){ 
+        if($val){
             $alert = "El nombre de usuario esta en uso";
             echo "<script type='text/javascript'>
-            danger(); 
+            danger();
             function danger() {
                 alert('$alert');
                 location.replace('/patient/add')
@@ -67,24 +71,24 @@ class PatientController extends Controller
             $patient->fullname = $request->input('name');
             $patient->note = $request->input('note');
             $patient->save();
-            
+
             return redirect('/patient');
         }
     }
     public function edit($id)
     {
         $patient = patient::find($id);
-        return view('patients.edit')->with(compact('patient')); 
+        return view('patients.edit')->with(compact('patient'));
     }
     public function update(Request $request, $id)
     {
         $patient = patient::find($id);
         $val = \DB::SELECT("SELECT * FROM patients WHERE username = ? AND username <> ?", [ $request->input('username'),$patient->username] );
 
-        if($val){ 
+        if($val){
             $alert = "El nombre de usuario esta en uso";
             echo "<script type='text/javascript'>
-            danger(); 
+            danger();
             function danger() {
                 alert('$alert');
                 location.replace('/patient/$id/edit')
@@ -98,7 +102,7 @@ class PatientController extends Controller
             $patient->note = $request->input('note');
             $patient->description = $request->input('description');
             $patient->save();
-    
+
             return redirect('/patient');
         }
 
