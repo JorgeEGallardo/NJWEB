@@ -15,7 +15,7 @@ Following radical prostatectomy, the only source of resistance to urinary flow i
 the pelvic floor muscles. Therefore, it is essential that the patient start training
 this muscle group well before surgery to prepare for the workload. The following
 exercise program is highly recommended to optimize the use of Kegel exercise.
-
+<img src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjy3rTrrZPnAhWHpZ4KHYQtBcAQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.mayoclinic.org%2Fes-es%2Fhealthy-lifestyle%2Fmens-health%2Fin-depth%2Fkegel-exercises-for-men%2Fart-20045074&psig=AOvVaw1Otf1PKcDtW5rM6nabJyA0&ust=1579650230794515"> 
 The Kegel exercise, named after Dr. Arnold Kegel, is an exercise designed to
 strengthen the pubococcygeus muscles. The exercises consist of the regular
 clenching and unclenching of the muscles which form part of the pelvic floor. The
