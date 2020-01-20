@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\patient;
-
+use Hash;
 class PatientController extends Controller
 {
 
@@ -67,7 +67,7 @@ class PatientController extends Controller
         } else {
            $patient = new patient();
             $patient->username = $request->input('username');
-            $patient->password = $request->input('password');
+            $patient->password = \Hash::make($request->input('password'));
             $patient->fullname = $request->input('name');
             $patient->note = $request->input('note');
             $patient->save();
@@ -97,7 +97,7 @@ class PatientController extends Controller
         } else{
             $patient = patient::find($id);
             $patient->username = $request->input('username');
-            $patient->password = $request->input('password');
+            $patient->password = \Hash::make($request->input('password'));
             $patient->fullname = $request->input('name');
             $patient->note = $request->input('note');
             $patient->description = $request->input('description');

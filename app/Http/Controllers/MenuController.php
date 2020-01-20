@@ -28,8 +28,10 @@ class MenuController extends Controller
     public function index()
     {
         $patients = patient::orderBy('id', 'DESC')->paginate(10);
+        if ($patients)
         return view('menus.index')->with(compact('patients')); //lista de pacientes
-
+        else
+        return redirect('/');
     }
 
     public function menus($id)
@@ -41,15 +43,21 @@ class MenuController extends Controller
 		INNER JOIN days on menus.day_id = days.id
         INNER JOIN menu_cats on menus.cat_id= menu_cats.id
         WHERE patient_id = ? order by menus.day_id, menus.cat_id", [$id]);
-
+        if ($menus)
         return view('menus.menus')->with(compact('menus'));
+        else
+        return redirect('/menus')->withErrors(['Este usuario no tiene asignado una dieta.']);;
 
 
     }
 
     public function getRecipes($id){
         $recipes = \DB::SELECT("SELECT * FROM recipes WHERE patient_id = ?", [$id]);
+        if ($recipes)
         return view('menus.recipes')->with(compact('recipes'));
+        else
+        return redirect('/menus')->withErrors(['Este usuario no tiene asignada ninguna receta.']);;
+
     }
 
     public function massiveView($id)

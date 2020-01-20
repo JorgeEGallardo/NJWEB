@@ -18,6 +18,14 @@
     <div class="container">
             <div class="section text-center">
                     <h2 class="title">Dietas </h2>
+                    @if($errors->any())
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{$errors->first()}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+@endif
                         <input type="text"class="form-control col-md-12" id="str" placeholder="Buscar">
                         <button type="button" onclick="search()" class="btn btn-success">Buscar</button>
                         <div id="table">
