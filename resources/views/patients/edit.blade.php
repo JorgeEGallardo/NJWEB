@@ -28,7 +28,7 @@
           <div class="col-sm-6">
             <div class="form-group label-floating">
               <label class="control-label">Contraseña</label>
-              <input type="texto" class="form-control" name="password" value ="{{$patient->password}}" required>
+              <input type="texto" class="form-control" name="password" required>
             </div>
           </div>
           <div class="col-sm-6">
