@@ -12,7 +12,6 @@
                                     @foreach ($patients as $patient)
                                     <tbody>
                                         <tr>
-                                            <!-- <td class="text-center">{{$patient->id}}</td> -->
                                             <td>{{$patient->username}}</td>
                                             <td>{{$patient->fullname}}</td>
                                             <td>{{$patient->note}}</td>

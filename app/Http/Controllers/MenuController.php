@@ -28,10 +28,8 @@ class MenuController extends Controller
     public function index()
     {
         $patients = patient::orderBy('id', 'DESC')->paginate(10);
-        if ($patients)
         return view('menus.index')->with(compact('patients')); //lista de pacientes
-        else
-        return redirect('/');
+
     }
 
     public function menus($id)
@@ -42,35 +40,29 @@ class MenuController extends Controller
         INNER JOIN patients on menus.patient_id = patients.id
 		INNER JOIN days on menus.day_id = days.id
         INNER JOIN menu_cats on menus.cat_id= menu_cats.id
-        WHERE patient_id = ? order by menus.day_id, menus.cat_id", [$id]);
-        if ($menus)
-        return view('menus.menus')->with(compact('menus'));
-        else
-        return redirect('/menus')->withErrors(['Este usuario no tiene asignado una dieta.']);;
+        WHERE patient_id = $id order by menus.day_id, menus.cat_id");
+
+        return view('menus.menus')->with(compact('menus')); //lista de comidas
 
 
     }
-
-    public function getRecipes($id){
+    
+        public function getRecipes($id){
         $recipes = \DB::SELECT("SELECT * FROM recipes WHERE patient_id = ?", [$id]);
-        if ($recipes)
         return view('menus.recipes')->with(compact('recipes'));
-        else
-        return redirect('/menus')->withErrors(['Este usuario no tiene asignada ninguna receta.']);;
-
     }
 
     public function massiveView($id)
     {
 
         $patients = patient::find($id);
-        return view('menus.massive', ['id' => $id, 'name' => $patients->username]);
+        return view('menus.massive', ['id' => $id, 'name' => $patients->username]); //lista de pacientes
     }
 
     public function getCatalog(Request $request)
     {
 
-        $catalog = \DB::select("select * from catalogos where Description like '?%'", [$request->search]);
+        $catalog = \DB::select("select * from catalogos where Description like '$request->search%'");
         $catalog = catalogos::where('Description', 'like', '%' . $request->search . '%')->paginate(2);
         $patients = patient::find($request->patient);
         return view('menus.table_sub', ['id' => $request->patient, 'name' => $patients->username])->with(compact('catalog'));
@@ -105,25 +97,13 @@ class MenuController extends Controller
     //------------------------------------------------------------------------------------------------------------------------------------
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------
-
-/*     public function store(Request $request)
-    {
-        //guardar datos
-        $menu = new menu();
-        $menu->name = $request->input('name');
-        $menu->portion = $request->input('portion');
-        $menu->patient_id = $request->input('patient_id');
-        $menu->day_id = $request->input('day_id');
-        $menu->cat_id = $request->input('cat_id');
-        $menu->save();
-
-        return redirect('/menus');
-    } */
     public function edit($id)
     {
+
         $menu = menu::find($id);
         $patients = patient::all();
-        return view('menus.edit')->with(compact('patients', 'menu'));
+        return view('menus.edit')->with(compact('patients', 'menu')); 
+
 
     }
     public function update(Request $request, $id)
@@ -215,7 +195,7 @@ class MenuController extends Controller
         $name = "";
         $ingr = "";
         $isProc = false;
-        for ($i = 0; $i < (count($menu) - 1); $i++) {
+        for ($i = 0; $i < (count($menu)-1); $i++) {
             if (strpos($menu[$i + 1], "Ingredient") !== false) {
                 if ($isFirst) {
                     $isFirst = false;
@@ -231,9 +211,7 @@ class MenuController extends Controller
                 }
                 $name = $menu[$i];
                 $isProc = false;
-            } else if (strpos(strtolower($menu[$i]), "prepar") !== false
-                || strpos(strtolower($menu[$i]), "elaboraci") !== false
-                || strpos(strtolower($menu[$i]), "proced") !== false) {
+            } else if (strpos(strtolower($menu[$i]), "prepar") !== false || strpos(strtolower($menu[$i]), "elaboraci") !== false || strpos(strtolower($menu[$i]), "proced") !== false) {
                 $isProc = true;
             } else {
                 if ($isProc)
@@ -242,6 +220,7 @@ class MenuController extends Controller
                     $ingr = $ingr . $menu[$i] . " ";
             }
         }
+        $proc = $proc . $menu[$i] . " ";
         $recipe = new recipe();
         $recipe->name = $name;
         $recipe->ingr = $ingr;
@@ -266,6 +245,7 @@ class MenuController extends Controller
             $cata->save();
         }
         \DB::delete('delete from menus where patient_id = ?', [$request->input('patient_id')]);
+        \DB::delete('delete from recipes where patient_id = ?', [$request->input('patient_id')]);
         $masterArray =  Self::menusProc($request->input('raw'));
         for ($i = 0; $i < count($masterArray); $i++) {
             for ($j = 0; $j < 5; $j++) {

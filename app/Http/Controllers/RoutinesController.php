@@ -14,7 +14,6 @@ class RoutinesController extends Controller
     //------------------------------------------------------------------------------------------------------------------------------------
     public function __construct()
     {
-        $this->middleware('auth');
     }
     public function index()
     {
@@ -24,8 +23,7 @@ class RoutinesController extends Controller
     }
     public function view($id)
     {
-       
-    $routines = \DB::SELECT("SELECT routines.id,routines.name, routines.series, routines.repetitions, routines.intensity,routines.rest,routines.link,
+        $routines = \DB::SELECT("SELECT routines.id,routines.name, routines.series, routines.repetitions, routines.intensity,routines.rest,routines.link,
     patients.username, days.name AS days, routines.patient_id
     FROM routines
     INNER JOIN patients on routines.patient_id = patients.id
@@ -44,12 +42,6 @@ class RoutinesController extends Controller
         $patients = patient::where('username', 'like', '%' . $request->search . '%')->orWhere('fullname', 'like', '%' . $request->search . '%')->get();
         return view('routines.tableAll_sub')->with(compact('patients'));
     }
-/*     public function create()
-    {
-        $patients = patient::all();
-        return view('patients.create')->with(compact('patients')); //lista de cats
-    } */
-
     //Devuelve una vista previa de las tablas receta y menus
     public function pre(Request $request)
     {
@@ -63,28 +55,6 @@ class RoutinesController extends Controller
     //-------------------------DEFAULT METHODS--------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------
 
-/*     public function store(Request $request)
-    {
-        return redirect('/rutinas');
-    }
-    public function edit($id)
-    {
-        $routines = routines::find($id);
-        $patients = patient::all();
-        return view('routines.edit')->with(compact('patients', 'routines')); 
-
-    }
-    public function update(Request $request, $id)
-    {
-        $menu = menu::find($id);
-        $menu->name = $request->input('name');
-        $menu->portion = $request->input('portion');
-        $menu->day_id = $request->input('day_id');
-        $menu->cat_id = $request->input('cat_id');
-        $menu->save();
-
-        return redirect('/menus');
-    } */
     public function destroy($id)
     {
         \DB::delete('delete from routines where patient_id = ?', [$id]);
@@ -100,6 +70,7 @@ class RoutinesController extends Controller
     //Devuelve un arreglo con todas las rutinas
     public function routinesProc(String $string)
     {
+
         $routine = array();
         $day = array();
         $row = array();
@@ -108,6 +79,7 @@ class RoutinesController extends Controller
         $data = $string;
         $cells = preg_split('/\t+/', $data);
         $cellsCleaned = array();
+        try{
         for ($i = 0; $i < count($cells); $i++) {
             if (strpos($cells[$i], ".com") !== false) {//If its a link
                 $split  = preg_split('/\r+/', $cells[$i]); //new column separate by /r /n
@@ -164,14 +136,55 @@ class RoutinesController extends Controller
         array_push($full, $routine);
         return $full;
     }
+        catch (\Exception $e){
+             return $full;
+        }
+    }
 
 
     //Hace la carga de los datos a la base de datos.
+    public function massive2(Request $request, $id)
+    {
+ try{
+        $patient = patient::find($id);
+        $patient->save();
+
+        \DB::delete('delete from routines where patient_id = ?', [$id]);
+        $routine =  $request->routine;
+        $rout = new routines();
+        for ($i = 0; $i < count($routine); $i++) {
+            $day2 = new days();
+            $day2->name="awa";
+            $day2->save();
+            $day = new days();
+            $day = \DB::SELECT("Select id from days order by id DESC limit 1");
+            $idDay =  $day[0]->id;
+            for ($j = 0; $j < count($routine[$i]); $j++) {
+
+
+                $rout = new routines();
+                $rout->name = $routine[$i][$j][0]." ";
+                $rout->series = $routine[$i][$j][1]." ";
+                $rout->repetitions = $routine[$i][$j][2]." ";
+                $rout->intensity = $routine[$i][$j][3]." ";
+                $rout->rest = $routine[$i][$j][4]." ";
+                $rout->link = $routine[$i][$j][5]." ";
+                $rout->patient_id = $id;
+                $rout->day_id = $idDay;
+                $rout->save();
+
+            }
+
+        }
+        return redirect('/rutinas');
+    } catch (\Exception $e) {
+        return back()->withErrors('Error de formato despues de:'.$rout->name);
+       }
+    }
     public function massive(Request $request)
     {
 
         $patient = patient::find($request->input('patient_id'));
-        $patient->description = $request->desc;
         $patient->save();
 
         \DB::delete('delete from routines where patient_id = ?', [$request->input('patient_id')]);
@@ -187,6 +200,8 @@ class RoutinesController extends Controller
             $day = \DB::SELECT("Select id from days order by id DESC limit 1");
             $idDay =  $day[0]->id;
             for ($j = 0; $j < count($routine[$i]); $j++) {
+                try {
+
                 $rout = new routines();
                 $rout->name = $routine[$i][$j][0];
                 $rout->series = $routine[$i][$j][1];
@@ -197,9 +212,15 @@ class RoutinesController extends Controller
                 $rout->patient_id = $request->input('patient_id');
                 $rout->day_id = $idDay;
                 $rout->save();
+        } catch (\Exception $e) {
+             return back()->withErrors('Error de formato despues de:'.$rout->name);
             }
+
+        }
+
         }
         return redirect('/rutinas');
+
     }
     public function massiveEx($idMenu, $idPatient)
     {

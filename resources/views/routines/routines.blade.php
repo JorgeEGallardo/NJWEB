@@ -16,6 +16,9 @@
 </div>
 <div class="main main-raised">
   <div class="container">
+      @if (session('error'))
+<div class="alert alert-danger">{{ session('error') }}</div>
+@endif
     <div class="section text-center">
       <h2 class="title">Rutinas</h2>
       @if(isset($routines[0]))

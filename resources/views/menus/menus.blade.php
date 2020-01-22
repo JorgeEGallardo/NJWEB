@@ -36,19 +36,15 @@
             <thead>
                 <tr>
                     <th>Comida</th>
-                    <!-- <th>Porcion</th>
-                    <th>Paciente</th> -->
                     <th>Día</th>
                     <th>Tipo</th>
-                    <!-- <th class="text-right">Acciones</th> -->
+                    <th class="text-right">Acciones</th>
                 </tr>
             </thead>
             @foreach ($menus as $menu)
             <tbody>
                 <tr>
                     <td>{{$menu->name}}</td>
-                    <!-- <td>{{$menu->portion}}</td>
-                    <td>{{$menu->username}}</td> -->
                     <td>{{$menu->days}}</td>
                     <td>{{$menu->menu_cats}}</td>
                     <td class="td-actions text-right">

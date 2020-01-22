@@ -59,12 +59,13 @@ Route::get('/change/{id}/{patient}', 'documentController@change');
 
 /* Rutas para rutinas  */
 Route::get('/rutinas', 'RoutinesController@index'); // listado de pacientes listos para añadir rutinas
-Route::get('/rutinas/getMPatients', 'RoutinesController@getPPatients'); 
+Route::get('/rutinas/getMPatients', 'RoutinesController@getPPatients');
 Route::post('/rutinas/patientMassive', 'RoutinesController@massive');
 Route::get('/rutinas/patientMassive/{id}', 'RoutinesController@massiveView');
 Route::post('/rutinas/temp', 'RoutinesController@pre');
 Route::get('/rutinas/patient/{id}', 'RoutinesController@view'); //datos del paciente
 Route::delete('/rutinas/patient/{id}/delete', 'RoutinesController@destroy'); //formulario para eliminar
 Auth::routes();
+Route::POST('/rutinas/patientMassive2/{id}','RoutinesController@massive2');
 
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -32,7 +32,7 @@
             @foreach ($data as $dato)
             <tbody>
                 <tr>
-                    <td>{{$dato->fullname}}</td>
+                     <td>{{$dato->fullname}}</td>
                     <td>{{$dato->description}}</td>
                     <td><?php
 
@@ -42,7 +42,7 @@
                     }
                     ?></td>
                     <td class="td-actions text-right">
-
+                    
                       <form >
                           <a href="{{ url('/patient/'.$dato->id.'/edit') }}" rel="tooltip" title="editar paciente" class="btn btn-success">
                           <i class="material-icons">edit</i>

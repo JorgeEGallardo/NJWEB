@@ -11,9 +11,9 @@ style="background-image: url('{{asset('img/cover-index.png')}}'); background-siz
                         @csrf
 
                         <div class="card-header card-header-info text-center">
-                            <h4 class="card-title">Registro de usuarios</h4>
+                            <h4 class="card-title">Registro de pacientes</h4>
                         </div>
-                            <p class="description text-center">Ingresa los datos del usuario</p>
+                            <p class="description text-center">Ingresa los datos del paciente</p>
                         <div class="card-body">
 
                             <div class="input-group">

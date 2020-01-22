@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('body-class','profile-page sidebar-collapse')
-@section('title', 'Creacion de recetas')
+@section('title', 'Creacion de Dieta')
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/img/cover-index.png')">
     <div class="container">
@@ -15,7 +15,7 @@
 <div class="main main-raised">
     <div class="container">
         <div class="section text-center">
-            <h2 class="title">Añadir Dieta</h2>
+            <h2 class="title">Añadir menu</h2>
             <form method="post" action="{{ url('/menus/patientMassive') }}">
                 @csrf
 

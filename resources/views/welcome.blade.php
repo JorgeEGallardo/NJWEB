@@ -30,6 +30,9 @@
                   <img class="img img-raised"  id="card1" src="{{asset ('/img/user.png')}}"  />
                 </a>
               </div>
+              <!-- <div class="icon icon-info">
+                <i class="material-icons">image</i>
+              </div> -->
               <h4 class="info-title">Administracion de pacientes</h4>
               <p>Módulo para ingresar nuevos pacientes al sistema así como ver, actualizar y borrar su información y/o documentos.</p>
             </div>
@@ -41,6 +44,9 @@
                   <img class="img img-raised"  id="card1" src="{{asset ('/img/food.png')}}"  />
                 </a>
               </div>
+            <!--   <div class="icon icon-success">
+                <i class="material-icons">verified_user</i>
+              </div> -->
               <h4 class="info-title">Administracion de Dietas</h4>
               <p>Módulo para añadir dietas a los pacientes así como ver, actualizar y borrar su información.</p>
             </div>
@@ -52,23 +58,40 @@
                   <img class="img img-raised"  id="card1" src="{{asset ('/img/exercise.png')}}"  />
                 </a>
               </div>
+              <!-- <div class="icon icon-danger">
+                <i class="material-icons">fingerprint</i>
+              </div> -->
               <h4 class="info-title">Administracion de rutinas</h4>
               <p>Módulo para añadir rutinas de ejercicio a los pacientes así como ver, actualizar y borrar su información.</p>
             </div>
           </div>
-
+          <!------
           <div class="col-md-12">
             <div class="info">
             <div class="card-image">
-                <a href="{{asset ('/wellnesspal(manual de usuario).pdf')}}">
-                  <img class="img img-raised"  id="card1" src="{{asset ('/img/documents.png')}}"  />
+                <a href="/menus/Asignar">
+                  <img class="img img-raised" id="card1" src="{{asset ('/img/logo.png')}}"  />
                 </a>
               </div>
-              <h4 class="info-title">Manual de usuario</h4>
-              <p></p>
+              <div class="icon icon-danger">
+                <i class="material-icons">fingerprint</i>
+              </div>
+              <h4 class="info-title">Catalogo</h4>
+              <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+              --------->
             </div>
           </div>
-
+             <div class="col-md-12">
+                    <div class="info">
+                    <div class="card-image">
+                        <a href="{{asset ('/wellnesspal(manual de usuario).pdf')}}">
+                          <img class="img img-raised"  id="card1" src="{{asset ('/img/documents.png')}}"  />
+                        </a>
+                      </div>
+                      <h4 class="info-title">Manual de usuario</h4>
+                      <p></p>
+                    </div>
+                  </div>
             </div>
           </div>
         </div>
