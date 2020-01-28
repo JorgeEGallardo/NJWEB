@@ -23,7 +23,6 @@
             <thead>
                 <tr>
                     <th>Paciente</th>
-                    <th>Contraseña</th>
                     <th>Descripcion</th>
                     <th>Observación</th>
                     <th class="text-right">Acciones</th>
@@ -42,7 +41,7 @@
                     }
                     ?></td>
                     <td class="td-actions text-right">
-                    
+
                       <form >
                           <a href="{{ url('/patient/'.$dato->id.'/edit') }}" rel="tooltip" title="editar paciente" class="btn btn-success">
                           <i class="material-icons">edit</i>

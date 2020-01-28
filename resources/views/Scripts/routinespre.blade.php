@@ -92,15 +92,25 @@ input{
                 for ($i = 0; $i < count($routine); $i++) {
 
 
-                    echo "<table STYLE='border:solid 0.1em; width:100%;margin-top:1.5rem'>";
+                    echo "<table STYLE='border:solid 0.15em; width:100%;margin-top:1.5rem'>";
+                        echo "<tr>";
+
+                    echo "<td style='width:27%;border:solid 0.1rem'>Ejercicio</td>";
+                    echo "<td style='width:7%;border:solid 0.1rem'>Series</td>";
+                    echo "<td style='width:13%;border:solid 0.1rem'>Repeticiones</td>";
+                    echo "<td style='width:7%;border:solid 0.1rem'>Intensidad</td>";
+                    echo "<td style='width:9%;border:solid 0.1rem'>Descanso</td>";
+                    echo "<td style='width:25%;border:solid 0.1rem'>Link</td>";
+                    echo "</tr>";
                     for ($j = 0; $j < count($routine[$i]); $j++) {
                         echo "<tr>";
-                        echo "<td style='width:32%'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][0] . "'></td>";
-                        echo "<td style='width:6%'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][1] . "'></td>";
-                        echo "<td style='width:12%'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][2] . "'></td>";
-                        echo "<td style='width:6%'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][3] . "'></td>";
-                        echo "<td style='width:8%'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][4] . "'></td>";
-                        echo "<td style='width:24%'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][5] . "'></td>";
+
+                        echo "<td style='width:27%;border:solid 0.1rem'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][0] . "'></td>";
+                        echo "<td style='width:7%;border:solid 0.1rem'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][1] . "'></td>";
+                        echo "<td style='width:13%;border:solid 0.1rem'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][2] . "'></td>";
+                        echo "<td style='width:7%;border:solid 0.1rem'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][3] . "'></td>";
+                        echo "<td style='width:9%;border:solid 0.1rem'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][4] . "'></td>";
+                        echo "<td style='width:25%;border:solid 0.1rem'> <input name='routine[$i][$j][]' value='" . $routine[$i][$j][5] . "'></td>";
                         echo "</tr>";
                     }
                     echo "</table>";
